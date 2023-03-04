@@ -1,0 +1,5 @@
+.header {
+  &.is-active {
+    @apply fixed;
+  }
+}

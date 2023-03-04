@@ -1,0 +1,54 @@
+{
+    "name": "d-la/chrisdinh.com",
+    "description": "Public website for Christopher Dinh",
+    "authors": [
+        {
+            "name": "Daniel La",
+            "email": "la.danieln@gmail.com"
+        },
+        {
+            "name": "Johnathan Dinh",
+            "email": "la.danieln@gmail.com"
+        },
+        {
+            "name": "Amanda La",
+            "email": "la.danieln@gmail.com"
+        }
+    ],
+    "repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    ],
+    "require": {
+        "wpackagist-plugin/post-types-order":"*",
+        "wpackagist-plugin/wordpress-seo":"*",
+        "wpackagist-plugin/custom-post-type-ui":"*",
+        "wpackagist-plugin/redirection": "*",
+        "wpackagist-plugin/insert-headers-and-footers": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Eidigital": "src/"
+        }
+    },
+    "extra": {
+        "installer-paths": {
+            "wp-content/mu-plugins/{$name}/": [
+            ],
+            "wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}

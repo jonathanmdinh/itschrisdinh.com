@@ -25,7 +25,6 @@
     "@roots/sage": "6.6.9"
   },
   "dependencies": {
-    "@roots/bud-postcss": "6.6.9",
-    "caniuse-lite": "^1.0.30001442"
+    "@roots/bud-postcss": "6.6.9"
   }
 }

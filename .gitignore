@@ -69,6 +69,7 @@ Thumbs.db
 # track these mu-plugins, plugins, and themes
 # add your own entries here
 !wp-content/plugins/advanced-custom-fields-pro/
+!wp-content/plugins/acorn
 !wp-content/themes/chrisdinh-photography/
 
 # disallowed file types

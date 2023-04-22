@@ -22,7 +22,7 @@ add_filter('acf/settings/save_json', function() {
     return get_stylesheet_directory() . '/resources/acf-json';
 });
 
-add_filter('acf/settings/load_json', function my_acf_json_load_point( $paths ) {
+add_filter('acf/settings/load_json', function( $paths ) {
 
     // remove original path (optional)
     unset($paths[0]);

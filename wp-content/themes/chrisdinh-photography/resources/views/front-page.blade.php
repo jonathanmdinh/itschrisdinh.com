@@ -1,0 +1,14 @@
+@extends('layouts.app')
+
+@section('content')
+
+  @while(have_posts()) @php(the_post())
+    @include('partials.page-header')
+    @includeFirst(['partials.content-page', 'partials.content'])
+  @endwhile
+
+  @unless ( empty($slides) && empty($sliderSettings) )
+    @include('components.slider', ['data' => $slides, 'settings' => $sliderSettings])
+  @endunless
+
+@endsection

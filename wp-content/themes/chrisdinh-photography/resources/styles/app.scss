@@ -2,6 +2,9 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/* Library imports */
+@import '@splidejs/splide/css';
+
 /* Sass imports */
 @import 'mixins/_media.scss';
 @import 'modules/_global.scss';

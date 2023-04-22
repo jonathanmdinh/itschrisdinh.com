@@ -1,10 +1,12 @@
 import domReady from '@roots/sage/client/dom-ready';
+import initiateSplideSlider from './components/splide.js';
 
 /**
  * Application entrypoint
  */
 domReady(async () => {
   // ...
+  initiateSplideSlider();
 });
 
 /**

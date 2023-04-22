@@ -25,6 +25,7 @@
     "@roots/sage": "6.6.9"
   },
   "dependencies": {
-    "@roots/bud-postcss": "6.6.9"
+    "@roots/bud-postcss": "6.6.9",
+    "@splidejs/splide": "^4.1.4"
   }
 }

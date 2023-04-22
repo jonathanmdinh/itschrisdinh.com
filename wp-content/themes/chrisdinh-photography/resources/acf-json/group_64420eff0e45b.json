@@ -94,6 +94,45 @@
                     "parent_repeater": "field_64420f389538c"
                 }
             ]
+        },
+        {
+            "key": "field_6443585ed0830",
+            "label": "Slider Settings",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_6443586ad0831",
+            "label": "Homepage Slider Settings",
+            "name": "homepage__slider-settings",
+            "aria-label": "",
+            "type": "clone",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "clone": [
+                "group_6443517866afb"
+            ],
+            "display": "seamless",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 0
         }
     ],
     "location": [
@@ -114,5 +153,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1682051218
+    "modified": 1682138603
 }

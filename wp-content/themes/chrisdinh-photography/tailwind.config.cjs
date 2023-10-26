@@ -17,8 +17,19 @@ module.exports = {
         md: '768px',
         lg: '1024px',
         xl: '1440px'
+      },
+      gridTemplateColumns: {
+        'gallery': 'repeat(4, 300px)'
+      },
+      gridTemplateRows: {
+        'gallery': 'repeat(4, 200px)'
       }
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern: /(md\:|lg\:|)-(grid-cols-gallery|grid-rows-gallery)/
+    }
+  ]
 };

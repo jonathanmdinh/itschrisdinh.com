@@ -1,0 +1,15 @@
+.gallery-collections__collection {
+  &--active {
+    @apply border-b-grey;
+  }
+
+  &:not(:last-of-type) {
+    @apply mr-3;
+  }
+
+  &:not(.gallery-collections__collection--active) {
+    &:hover {
+      @apply border-b-grey;
+    }
+  }
+}

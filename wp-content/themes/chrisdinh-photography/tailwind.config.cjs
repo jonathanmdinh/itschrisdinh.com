@@ -22,9 +22,13 @@ module.exports = {
         'gallery': 'repeat(4, 300px)'
       },
       gridTemplateRows: {
-        'gallery': 'repeat(4, 200px)'
+        'gallery': 'repeat(4, 300px)'
       }
     },
+    fontFamily: {
+      handwritingErnie: ['adobe-handwriting-ernie', 'Helvetica-Neue', 'sans-serif'],
+      neueHaas: ['neue-haas-grotesk-display', 'Helvetica-Neue', 'sans-serif']
+    }
   },
   plugins: [],
   safelist: [

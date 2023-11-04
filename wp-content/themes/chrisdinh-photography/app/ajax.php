@@ -24,15 +24,18 @@ class Ajax {
                     'post_status' => 'publish',
                     'order' => 'ASC',
                     'orderby' => 'menu_order',
-                    'tax_query' => [
+                    'posts_per_page' => -1
+                ];
+
+                if ( $fetchData['termSlug'] !== 'all' ) {
+                    $wpQueryArgs['tax_query'] = [
                         [
                             'taxonomy' => 'collection',
                             'field' => 'slug',
                             'terms' => $fetchData['termSlug']
                         ]
-                    ],
-                    'posts_per_page' => -1
-                ];
+                    ];
+                }
 
                 $query = new \WP_Query($wpQueryArgs);
 

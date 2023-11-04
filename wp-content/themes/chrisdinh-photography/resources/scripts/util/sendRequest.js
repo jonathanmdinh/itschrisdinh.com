@@ -10,7 +10,9 @@ async function sendRequest( url, fetchSettings = {}, data = {} ) {
   // Set default settings for the fetch request
   const defaultSettings = {
       method: 'POST',
-      body: data
+      mode: 'same-origin',
+      credentials: 'same-origin',
+      body: JSON.stringify({data}),
   };
 
   // Replace any setting values with the fetchSettings object passed

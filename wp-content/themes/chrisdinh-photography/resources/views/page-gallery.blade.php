@@ -12,10 +12,10 @@
     </header>
 
     @unless ( empty($galleryItems) )
-        <section class="gallery-items max-w-7xl mx-auto relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-5">
+        <section class="gallery-items max-w-7xl mx-auto relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-rows-gallery gap-4 px-5">
             @foreach ($galleryItems as $item)
                 <div class="gallery-item__image block overflow-hidden cursor-pointer">
-                    <img src="{{ get_the_post_thumbnail_url($item->ID, 'medium') }}" alt="{{ get_post_meta($item->ID, '_wp_attachment_image_alt', TRUE) }}" class="relative object-cover block h-full w-full transition-all duration-1000">
+                    <img src="{{ get_the_post_thumbnail_url($item->ID, 'full') }}" alt="{{ get_post_meta($item->ID, '_wp_attachment_image_alt', TRUE) }}" class="relative object-cover block transition-all duration-1000 w-full h-full">
                 </div>
             @endforeach
         </section>

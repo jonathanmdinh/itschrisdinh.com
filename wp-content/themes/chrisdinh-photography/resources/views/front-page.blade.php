@@ -1,3 +1,7 @@
+<!--front-end view of the homepage-->
+<!--read sage doc on blade-->
+<!--use tailwind classes in html of front-page.blade.php / slider.blade.php-->
+
 @extends('layouts.app')
 
 @section('content')

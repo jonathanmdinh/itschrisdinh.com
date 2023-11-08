@@ -1,4 +1,4 @@
-import { Splide } from "@splidejs/splide";
+import { Splide, SplidePagination } from "@splidejs/splide";
 
 const initiateSplideSlider = ( selector = '.splide' ) => {
   const sliders = document.querySelectorAll(`${selector}`);
@@ -10,7 +10,20 @@ const initiateSplideSlider = ( selector = '.splide' ) => {
       const sliderId = slider.id;
 
       if ( sliderId ) {
-        new Splide(`#${sliderId}`, sliderSettings).mount();
+        const splide = new Splide(`#${sliderId}`, sliderSettings).mount();
+
+        //Custom pagination rendering
+        const pagination = splide.Components.Elements.pagination;
+
+        // Update pagination to format "current slide index - total slides"
+        const updatePagination = () => {
+          const activeIndex = splide.index;
+          const totalSlides = splide.length;
+          const paginationText = `${activeIndex + 1} - ${totalSlides}`;
+          pagination.innerHTML = paginationText;
+        };
+        splide.on("moved", updatePagination);
+        updatePagination();
       }
     });
   }
@@ -18,6 +31,8 @@ const initiateSplideSlider = ( selector = '.splide' ) => {
 
 const setSliderSettings = ( slider ) => {
   const sliderOptions = {
+    pagination: false, // Disable default pagination.
+    rewind: true, //allow the carousel to infinitely loop.
     breakpoints: {
       768: {},
       1120: {}

@@ -4,6 +4,8 @@ namespace App\View\Composers;
 
 use Roots\Acorn\View\Composer;
 
+//backend data fetch for the data that will be displayed on the homepage
+
 class FrontPage extends Composer {
     /**
      * List of views served by this composer.

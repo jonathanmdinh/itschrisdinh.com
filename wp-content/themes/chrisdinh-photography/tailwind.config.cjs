@@ -17,6 +17,13 @@ module.exports = {
         md: '768px',
         lg: '1024px',
         xl: '1440px'
+      },
+      padding: {
+        '1/2': '50%',
+        full: '100%',
+      },
+      blur: {
+        xs: '2px'
       }
     },
   },

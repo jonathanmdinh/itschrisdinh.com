@@ -13,6 +13,8 @@
 
   @unless ( empty($slides) && empty($sliderSettings) )
     @include('components.slider', ['data' => $slides, 'settings' => $sliderSettings])
+    @if (get_field('slider__show-camera-effect'))
+        @include('components.camera-effect')
+    @endif
   @endunless
-
 @endsection

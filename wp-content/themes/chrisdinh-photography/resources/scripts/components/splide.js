@@ -2,7 +2,6 @@ import { Splide, SplidePagination } from "@splidejs/splide";
 
 const initiateSplideSlider = ( selector = '.splide' ) => {
   const sliders = document.querySelectorAll(`${selector}`);
-
   if ( sliders.length > 0 ) {
     sliders.forEach( slider => {
 
@@ -22,8 +21,8 @@ const initiateSplideSlider = ( selector = '.splide' ) => {
           const paginationText = `${activeIndex + 1} - ${totalSlides}`;
           pagination.innerHTML = paginationText;
         };
-        splide.on("moved", updatePagination);
         updatePagination();
+        splide.on("moved", updatePagination);
       }
     });
   }
@@ -34,11 +33,10 @@ const setSliderSettings = ( slider ) => {
     pagination: false, // Disable default pagination.
     rewind: true, //allow the carousel to infinitely loop.
     breakpoints: {
-      768: {},
-      1120: {}
+      768: {pagination: false},
+      1120: {pagination: false}
     }
   };
-
   sliderOptions.type = slider.dataset.sliderType ? slider.dataset.sliderType : 'loop'; // Set loop as default slider type if none is provided
   sliderOptions.mediaQuery = 'min'; // Set mediaQuery to min so our breakpoints are mobile first
 
@@ -68,5 +66,4 @@ const setSliderSettings = ( slider ) => {
 
   return sliderOptions;
 }
-
 export default initiateSplideSlider;

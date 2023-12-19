@@ -14,8 +14,12 @@
         @if (get_field('slider__show-arrows'))
             data-arrows="{{ implode(',', $sliderSettings['slider__arrows']) }}"
         @endif
-        data-pagination="{{ implode(',', $sliderSettings['slider__pagination']) }}"
-        data-custom-pagination="<?php echo get_field('slider__custom-pagination') ? 'true' : 'false'; ?>"
+        @if (get_field('slider__show-pagination'))
+            data-pagination="{{ implode(',', $sliderSettings['slider__pagination']) }}"
+        @endif
+        @if (get_field('slider__custom-pagination'))
+            data-custom-pagination="<?php echo get_field('slider__custom-pagination') ? 'true' : 'false'; ?>"
+        @endif
     >
         <div class="flex justify-center items-center">
             <div class="splide__arrows z-10">

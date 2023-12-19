@@ -706,6 +706,26 @@
             ]
         },
         {
+            "key": "field_65820b1daab9f",
+            "label": "Show Pagination",
+            "name": "slider__show-pagination",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "toggle arrows on\/off: checked = yes",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Toggle pagination on\/off",
+            "default_value": 1,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_6572535a0cffa",
             "label": "Show Camera Effect",
             "name": "slider__show-camera-effect",
@@ -733,7 +753,15 @@
             "type": "true_false",
             "instructions": "toggle on\/off to convert pagination to custom: checked = custom; unchecked = default",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_65820b1daab9f",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -764,5 +792,5 @@
     "active": false,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1702421438
+    "modified": 1703021595
 }

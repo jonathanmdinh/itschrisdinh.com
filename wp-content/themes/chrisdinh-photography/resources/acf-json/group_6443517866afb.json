@@ -706,26 +706,6 @@
             ]
         },
         {
-            "key": "field_65721e7f6c9df",
-            "label": "Show Pagination",
-            "name": "slider__show-pagination",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "toggle pagination on\/off: checked = yes",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "Show Pagination",
-            "default_value": 1,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
             "key": "field_6572535a0cffa",
             "label": "Show Camera Effect",
             "name": "slider__show-camera-effect",
@@ -740,6 +720,26 @@
                 "id": ""
             },
             "message": "Show Camera Effect",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_6578df7da94a3",
+            "label": "Custom Pagination",
+            "name": "slider__custom-pagination",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "toggle on\/off to convert pagination to custom: checked = custom; unchecked = default",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Show custom pagination",
             "default_value": 0,
             "ui": 0,
             "ui_on_text": "",
@@ -764,5 +764,5 @@
     "active": false,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1701991317
+    "modified": 1702421438
 }

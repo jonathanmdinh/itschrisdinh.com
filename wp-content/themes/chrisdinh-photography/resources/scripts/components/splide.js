@@ -11,18 +11,9 @@ const initiateSplideSlider = ( selector = '.splide' ) => {
       if ( sliderId ) {
         const splide = new Splide(`#${sliderId}`, sliderSettings).mount();
 
-        //Custom pagination rendering
-        const pagination = splide.Components.Elements.pagination;
-
-        // Update pagination to format "current slide index - total slides"
-        const updatePagination = () => {
-          const activeIndex = splide.index;
-          const totalSlides = splide.length;
-          const paginationText = `${activeIndex + 1} - ${totalSlides}`;
-          pagination.innerHTML = paginationText;
-        };
-        updatePagination();
-        splide.on("moved", updatePagination);
+        if (slider.dataset.customPagination === 'true') {
+          applyCustomPagination(splide);
+        }
       }
     });
   }
@@ -66,4 +57,20 @@ const setSliderSettings = ( slider ) => {
 
   return sliderOptions;
 }
+
+
+const applyCustomPagination = (splide) => {
+  const pagination = splide.Components.Elements.pagination;
+
+  const updatePagination = () => {
+    const activeIndex = splide.index;
+    const totalSlides = splide.length;
+    const paginationText = `${activeIndex + 1} - ${totalSlides}`;
+    pagination.innerHTML = paginationText;
+  };
+
+  updatePagination();
+  splide.on('moved', updatePagination);
+};
+
 export default initiateSplideSlider;

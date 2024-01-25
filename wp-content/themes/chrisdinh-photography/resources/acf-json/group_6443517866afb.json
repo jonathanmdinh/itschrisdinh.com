@@ -648,7 +648,7 @@
                     "label": "Mobile",
                     "name": "mobile_pagination",
                     "aria-label": "",
-                    "type": "text",
+                    "type": "true_false",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -657,18 +657,18 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "false",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
                 },
                 {
                     "key": "field_64435684eca91",
                     "label": "Tablet",
                     "name": "tablet_pagination",
                     "aria-label": "",
-                    "type": "text",
+                    "type": "true_false",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -677,18 +677,18 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "false",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
                 },
                 {
                     "key": "field_6443568beca92",
                     "label": "Desktop",
                     "name": "desktop_pagination",
                     "aria-label": "",
-                    "type": "text",
+                    "type": "true_false",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -697,53 +697,13 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "false",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
                 }
             ]
-        },
-        {
-            "key": "field_65820b1daab9f",
-            "label": "Show Pagination",
-            "name": "slider__show-pagination",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "toggle arrows on\/off: checked = yes",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "Toggle pagination on\/off",
-            "default_value": 1,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_6572535a0cffa",
-            "label": "Show Camera Effect",
-            "name": "slider__show-camera-effect",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "toggle on\/off to show camera view square: checked = on",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "Show Camera Effect",
-            "default_value": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
         },
         {
             "key": "field_6578df7da94a3",
@@ -772,6 +732,26 @@
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
+        },
+        {
+            "key": "field_6572535a0cffa",
+            "label": "Show Camera Effect",
+            "name": "slider__show-camera-effect",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "toggle on\/off to show camera view square: checked = on",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Show Camera Effect",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -792,5 +772,5 @@
     "active": false,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1703021595
+    "modified": 1706158543
 }

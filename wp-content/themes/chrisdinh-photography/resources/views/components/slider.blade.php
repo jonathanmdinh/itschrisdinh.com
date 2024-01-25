@@ -1,3 +1,12 @@
+@php
+    $paginationSettings = $sliderSettings['slider__pagination'];
+    $paginationValues = [
+        $paginationSettings['mobile_pagination'] ? 'true' : 'false',
+        $paginationSettings['tablet_pagination'] ? 'true' : 'false',
+        $paginationSettings['desktop_pagination'] ? 'true' : 'false',
+    ];
+@endphp
+
 <!--front-end view of the slider component-->
 <!--run yarn build/dev before coding to implement new tailwind code-->
 @unless ( empty($data) )
@@ -11,12 +20,10 @@
         data-per-page="{{ implode(',', $sliderSettings['slider__per-page']) }}"
         data-per-move="{{ implode(',', $sliderSettings['slider__per-move']) }}"
         data-gap="{{ implode(',', $sliderSettings['slider__gap']) }}"
-        @if (get_field('slider__show-arrows'))
+        @if ($sliderSettings['slider__show-arrows'])
             data-arrows="{{ implode(',', $sliderSettings['slider__arrows']) }}"
         @endif
-        @if (get_field('slider__show-pagination'))
-            data-pagination="{{ implode(',', $sliderSettings['slider__pagination']) }}"
-        @endif
+        data-pagination="{{ implode(',', $sliderSettings['slider__pagination'])}}"
         @if (get_field('slider__custom-pagination'))
             data-custom-pagination="<?php echo get_field('slider__custom-pagination') ? 'true' : 'false'; ?>"
         @endif
@@ -46,7 +53,7 @@
             </div>
             <!--handles color of pagination text-->
             @if (get_field('slider__custom-pagination'))
-                <div class="splide__pagination text-white"></div>
+                <div class="splide__pagination text-black"></div>
             @endif
         </div>
     </section>

@@ -18,10 +18,7 @@ module.exports = {
         lg: '1024px',
         xl: '1440px'
       },
-      padding: {
-        '1/2': '50%',
-        full: '100%',
-      },
+      padding: {},
       blur: {
         xs: '2px'
       }

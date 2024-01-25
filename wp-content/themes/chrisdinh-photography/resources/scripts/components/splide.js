@@ -20,12 +20,24 @@ const initiateSplideSlider = ( selector = '.splide' ) => {
 };
 
 const setSliderSettings = ( slider ) => {
+  const paginationSettings = slider.dataset.pagination.split(',');
+  const mobilePagination = paginationSettings[0] === 'true';
+  const tabletPagination = paginationSettings[1] === 'true';
+  const desktopPagination = paginationSettings[2] === 'true';
+
   const sliderOptions = {
-    pagination: false, // Disable default pagination.
     rewind: true, //allow the carousel to infinitely loop.
+    pagination: desktopPagination,
     breakpoints: {
-      768: {pagination: false},
-      1120: {pagination: false}
+      //mobile
+      768: {
+
+        pagination: mobilePagination
+      },
+      //tablet
+      1120: {
+        pagination: tabletPagination
+      }
     }
   };
   sliderOptions.type = slider.dataset.sliderType ? slider.dataset.sliderType : 'loop'; // Set loop as default slider type if none is provided

@@ -16,7 +16,7 @@
     @dump($sliderSettings)
   </pre>
     @include('components.slider', ['data' => $slides, 'settings' => $sliderSettings])
-    @if (get_field('slider__show-camera-effect'))
+    @if ($sliderSettings['slider__show-camera-effect'])
         @include('components.camera-effect')
     @endif
   @endunless

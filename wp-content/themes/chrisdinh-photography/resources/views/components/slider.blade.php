@@ -24,7 +24,7 @@
             data-arrows="{{ implode(',', $sliderSettings['slider__arrows']) }}"
         @endif
         data-pagination="{{ implode(',', $sliderSettings['slider__pagination'])}}"
-        @if (get_field('slider__custom-pagination'))
+        @if ($sliderSettings['slider__custom-pagination'])
             data-custom-pagination="<?php echo get_field('slider__custom-pagination') ? 'true' : 'false'; ?>"
         @endif
     >
@@ -52,7 +52,7 @@
                 </ul>
             </div>
             <!--handles color of pagination text-->
-            @if (get_field('slider__custom-pagination'))
+            @if ($sliderSettings['slider__custom-pagination'])
                 <div class="splide__pagination text-black"></div>
             @endif
         </div>

@@ -53,7 +53,7 @@
             </div>
             <!--handles color of pagination text-->
             @if ($sliderSettings['slider__custom-pagination'])
-                <div class="splide__pagination text-black"></div>
+                <div class="splide__pagination text-white"></div>
             @endif
         </div>
     </section>

@@ -25,17 +25,24 @@ const setSliderSettings = ( slider ) => {
   const tabletPagination = paginationSettings[1] === 'true';
   const desktopPagination = paginationSettings[2] === 'true';
 
+  const arrowSettings = slider.dataset.arrows.split(',');
+  const mobileArrows = arrowSettings[0] === 'true';
+  const tabletArrows = arrowSettings[1] === 'true';
+  const desktopArrows = arrowSettings[2] === 'true';
+
   const sliderOptions = {
     rewind: true, //allow the carousel to infinitely loop.
     pagination: desktopPagination,
+    arrows: desktopArrows,
     breakpoints: {
       //mobile
       768: {
-
+        arrows: mobileArrows,
         pagination: mobilePagination
       },
       //tablet
       1120: {
+        arrows: tabletArrows,
         pagination: tabletPagination
       }
     }

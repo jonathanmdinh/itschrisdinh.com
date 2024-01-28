@@ -550,7 +550,7 @@
                     "label": "Mobile",
                     "name": "mobile_arrows",
                     "aria-label": "",
-                    "type": "text",
+                    "type": "true_false",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -559,18 +559,18 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "false",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
+                    "message": "",
+                    "default_value": 1,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
                 },
                 {
                     "key": "field_64435637eca8d",
                     "label": "Tablet",
                     "name": "tablet_arrows",
                     "aria-label": "",
-                    "type": "text",
+                    "type": "true_false",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -579,18 +579,18 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "false",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
+                    "message": "",
+                    "default_value": 1,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
                 },
                 {
                     "key": "field_64435640eca8e",
                     "label": "Desktop",
                     "name": "desktop_arrows",
                     "aria-label": "",
-                    "type": "text",
+                    "type": "true_false",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -599,33 +599,13 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "false",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
+                    "message": "",
+                    "default_value": 1,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
                 }
             ]
-        },
-        {
-            "key": "field_65723fb5e82c1",
-            "label": "Show Arrows",
-            "name": "slider__show-arrows",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "toggle arrows on\/off: checked = yes",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "Show Arrows",
-            "default_value": 1,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
         },
         {
             "key": "field_6443565feca8f",
@@ -658,7 +638,7 @@
                         "id": ""
                     },
                     "message": "",
-                    "default_value": 0,
+                    "default_value": 1,
                     "ui": 0,
                     "ui_on_text": "",
                     "ui_off_text": ""
@@ -678,7 +658,7 @@
                         "id": ""
                     },
                     "message": "",
-                    "default_value": 0,
+                    "default_value": 1,
                     "ui": 0,
                     "ui_on_text": "",
                     "ui_off_text": ""
@@ -698,7 +678,7 @@
                         "id": ""
                     },
                     "message": "",
-                    "default_value": 0,
+                    "default_value": 1,
                     "ui": 0,
                     "ui_on_text": "",
                     "ui_off_text": ""
@@ -716,7 +696,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_65820b1daab9f",
+                        "field": "field_644440cd74fd3",
                         "operator": "==",
                         "value": "1"
                     }
@@ -728,7 +708,7 @@
                 "id": ""
             },
             "message": "Show custom pagination",
-            "default_value": 0,
+            "default_value": 1,
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
@@ -772,5 +752,5 @@
     "active": false,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1706158543
+    "modified": 1706408674
 }

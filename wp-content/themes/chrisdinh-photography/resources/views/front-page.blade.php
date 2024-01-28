@@ -1,3 +1,7 @@
+<!--front-end view of the homepage-->
+<!--read sage doc on blade-->
+<!--use tailwind classes in html of front-page.blade.php / slider.blade.php-->
+
 @extends('layouts.app')
 
 @section('content')
@@ -9,6 +13,8 @@
 
   @unless ( empty($slides) && empty($sliderSettings) )
     @include('components.slider', ['data' => $slides, 'settings' => $sliderSettings])
+    @if ($sliderSettings['slider__show-camera-effect'])
+        @include('components.camera-effect')
+    @endif
   @endunless
-
 @endsection

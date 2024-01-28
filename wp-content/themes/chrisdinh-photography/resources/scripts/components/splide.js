@@ -1,8 +1,7 @@
-import { Splide } from "@splidejs/splide";
+import { Splide, SplidePagination } from "@splidejs/splide";
 
 const initiateSplideSlider = ( selector = '.splide' ) => {
   const sliders = document.querySelectorAll(`${selector}`);
-
   if ( sliders.length > 0 ) {
     sliders.forEach( slider => {
 
@@ -10,20 +9,37 @@ const initiateSplideSlider = ( selector = '.splide' ) => {
       const sliderId = slider.id;
 
       if ( sliderId ) {
-        new Splide(`#${sliderId}`, sliderSettings).mount();
+        const splide = new Splide(`#${sliderId}`, sliderSettings).mount();
+
+        if (slider.dataset.customPagination === 'true') {
+          applyCustomPagination(splide);
+        }
       }
     });
   }
 };
 
 const setSliderSettings = ( slider ) => {
+  const paginationSettings = slider.dataset.pagination.split(',');
+  const mobilePagination = paginationSettings[0] === 'true';
+  const tabletPagination = paginationSettings[1] === 'true';
+  const desktopPagination = paginationSettings[2] === 'true';
+
   const sliderOptions = {
+    rewind: true, //allow the carousel to infinitely loop.
+    pagination: desktopPagination,
     breakpoints: {
-      768: {},
-      1120: {}
+      //mobile
+      768: {
+
+        pagination: mobilePagination
+      },
+      //tablet
+      1120: {
+        pagination: tabletPagination
+      }
     }
   };
-
   sliderOptions.type = slider.dataset.sliderType ? slider.dataset.sliderType : 'loop'; // Set loop as default slider type if none is provided
   sliderOptions.mediaQuery = 'min'; // Set mediaQuery to min so our breakpoints are mobile first
 
@@ -53,5 +69,20 @@ const setSliderSettings = ( slider ) => {
 
   return sliderOptions;
 }
+
+
+const applyCustomPagination = (splide) => {
+  const pagination = splide.Components.Elements.pagination;
+
+  const updatePagination = () => {
+    const activeIndex = splide.index;
+    const totalSlides = splide.length;
+    const paginationText = `${activeIndex + 1} - ${totalSlides}`;
+    pagination.innerHTML = paginationText;
+  };
+
+  updatePagination();
+  splide.on('moved', updatePagination);
+};
 
 export default initiateSplideSlider;

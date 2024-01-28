@@ -12,9 +12,6 @@
   @endwhile
 
   @unless ( empty($slides) && empty($sliderSettings) )
-  <pre>
-    @dump($sliderSettings)
-  </pre>
     @include('components.slider', ['data' => $slides, 'settings' => $sliderSettings])
     @if ($sliderSettings['slider__show-camera-effect'])
         @include('components.camera-effect')

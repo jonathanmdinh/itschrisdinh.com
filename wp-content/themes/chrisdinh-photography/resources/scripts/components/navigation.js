@@ -13,7 +13,6 @@ function initiateNavigation() {
       menuOverlay.classList.remove('opacity-100');
       setTimeout(() => menuOverlay.classList.add('opacity-0'), 10); // Add opacity-0
       setTimeout(() => menuOverlay.classList.add('hidden'), 300); // Remove opacity and then hide
-
     }
   });
 }

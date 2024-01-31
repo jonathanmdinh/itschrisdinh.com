@@ -30,7 +30,7 @@
             </div>
 
             <!-- Contact Information / Figure out how this is in ui-sans-serif when not hard-coded as custom class-->
-            <div class="contact-info w-full flex flex-col justify-start items-start p-4 pt-24 text-white whitespace-nowrap lg:w-1/2 lg:items-end lg:pr-48">
+            <div class="contact-info w-full flex flex-col justify-start items-start p-4 pt-24 text-white whitespace-nowrap lg:w-1/2 lg:pr-48">
                 <p class="mb-1 text-2xl md:text-4xl ">@itschrisdinh</p>
                 <p class="mb-1 text-2xl md:text-4xl ">+1 (516) 582-3698</p>
                 <p class="mb-1 text-2xl md:text-4xl ">itschrisdinh@gmail.com</p>

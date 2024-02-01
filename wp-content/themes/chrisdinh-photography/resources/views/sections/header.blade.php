@@ -18,7 +18,7 @@ $menuItems = has_nav_menu('primary_navigation') ? wp_get_nav_menu_items('primary
         </button>
 
         <!-- Full-screen menu overlay, hidden by default -->
-        <div id="menuOverlay" class="fixed inset-0 bg-neutral-900 opacity-0 hidden transition-opacity duration-300 ease-in-out z-10 bg-cover bg-center">
+        <div id="menuOverlay" class="fixed inset-0 bg-neutral-900 opacity-0 hidden transition-opacity duration-175 ease-in-out z-10 bg-cover bg-center">
             <!-- Container for the background image and its effects -->
             <div id="backgroundImageContainer" class="fixed inset-0 bg-cover bg-center opacity-0 transition-opacity duration-1000 ease-in-out z-0"></div>
                 <div id="backgroundImageContainer2" class="fixed inset-0 bg-cover bg-center opacity-0 transition-opacity duration-1000 ease-in-out z-0"></div>

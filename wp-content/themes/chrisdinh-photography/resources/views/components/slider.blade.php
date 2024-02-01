@@ -5,6 +5,13 @@
         $paginationSettings['tablet_pagination'] ? 'true' : 'false',
         $paginationSettings['desktop_pagination'] ? 'true' : 'false',
     ];
+
+    $arrowSettings = $sliderSettings['slider__arrows'];
+    $arrowValues = [
+        $arrowSettings['mobile_arrows'] ? 'true' : 'false',
+        $arrowSettings['tablet_arrows'] ? 'true' : 'false',
+        $arrowSettings['desktop_arrows'] ? 'true' : 'false',
+    ];
 @endphp
 
 <!--front-end view of the slider component-->
@@ -20,9 +27,7 @@
         data-per-page="{{ implode(',', $sliderSettings['slider__per-page']) }}"
         data-per-move="{{ implode(',', $sliderSettings['slider__per-move']) }}"
         data-gap="{{ implode(',', $sliderSettings['slider__gap']) }}"
-        @if ($sliderSettings['slider__show-arrows'])
-            data-arrows="{{ implode(',', $sliderSettings['slider__arrows']) }}"
-        @endif
+        data-arrows="{{ implode(',', $sliderSettings['slider__arrows']) }}"
         data-pagination="{{ implode(',', $sliderSettings['slider__pagination'])}}"
         @if ($sliderSettings['slider__custom-pagination'])
             data-custom-pagination="<?php echo get_field('slider__custom-pagination') ? 'true' : 'false'; ?>"

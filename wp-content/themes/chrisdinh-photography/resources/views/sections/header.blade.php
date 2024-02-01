@@ -20,9 +20,10 @@ $menuItems = has_nav_menu('primary_navigation') ? wp_get_nav_menu_items('primary
         <!-- Full-screen menu overlay, hidden by default -->
         <div id="menuOverlay" class="fixed inset-0 bg-neutral-900 opacity-0 hidden transition-opacity duration-300 ease-in-out z-10 bg-cover bg-center">
             <!-- Container for the background image and its effects -->
-            <div id="backgroundImageContainer" class="fixed inset-0 bg-cover bg-center opacity-0 transition-opacity duration-300 ease-in-out z-0"></div>
-                <!-- Navigation Menu -->
-                <div class="flex h-full flex-col-reverse lg:flex-row justify-between items-center z">
+            <div id="backgroundImageContainer" class="fixed inset-0 bg-cover bg-center opacity-0 transition-opacity duration-1000 ease-in-out z-0"></div>
+                <div id="backgroundImageContainer2" class="fixed inset-0 bg-cover bg-center opacity-0 transition-opacity duration-1000 ease-in-out z-0"></div>
+                    <!-- Navigation Menu -->
+                    <div class="flex h-full flex-col-reverse lg:flex-row justify-between items-center z">
                         <nav class="w-full flex flex-col justify-end items-end p-4 text-white lg:w-1/2 lg:justify-start lg:items-start lg:pl-48 z-20" aria-label="Primary Navigation">
                             <ul class="flex flex-col w-full items-end lg:items-start">
                                 @foreach ($menuItems as $menuItem)
@@ -49,6 +50,7 @@ $menuItems = has_nav_menu('primary_navigation') ? wp_get_nav_menu_items('primary
                             <p class="text-2xl md:text-4xl">{{ $phone_number ?? '+1 (516) 582-3698' }}</p>
                             <p class="text-2xl md:text-4xl">{{ $email_address ?? 'itschrisdinh@gmail.com' }}</p>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>

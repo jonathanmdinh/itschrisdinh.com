@@ -16,24 +16,32 @@ function initiateNavigation() {
     }
   });
 
+  let currentBackgroundImage = '';
+
   document.querySelectorAll('.nav-item').forEach(item => {
     item.addEventListener('mouseenter', function() {
       const mobileImageUrl = this.getAttribute('data-image-mobile');
       const desktopImageUrl = this.getAttribute('data-image-desktop');
       const imageUrl = window.innerWidth >= 1024 ? desktopImageUrl : mobileImageUrl;
+      const backgroundImageContainer = document.getElementById('backgroundImageContainer');
 
-      console.log("Hovered Image URL:", imageUrl); // Log the URL
-      menuOverlay.style.backgroundImage = `url(${imageUrl})`;
-    });
+      if (currentBackgroundImage !== imageUrl) {
+        currentBackgroundImage = imageUrl;
 
-    item.addEventListener('mouseleave', function() {
-      menuOverlay.style.backgroundImage = 'none';
+        // Fade out the current image
+        backgroundImageContainer.classList.remove('opacity-40');
+        backgroundImageContainer.classList.add('opacity-0');
+
+        setTimeout(() => {
+          // Change the background image after the fade-out completes
+          backgroundImageContainer.style.backgroundImage = `url(${imageUrl})`;
+          // Fade in the new image
+          backgroundImageContainer.classList.remove('opacity-0');
+          backgroundImageContainer.classList.add('opacity-40');
+        }, 600); // This timeout duration should match the transition duration
+      }
     });
   });
-
-
-
 }
-
 
 export default initiateNavigation;

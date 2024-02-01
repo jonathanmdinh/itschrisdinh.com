@@ -15,6 +15,25 @@ function initiateNavigation() {
       setTimeout(() => menuOverlay.classList.add('hidden'), 300); // Remove opacity and then hide
     }
   });
+
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('mouseenter', function() {
+      const mobileImageUrl = this.getAttribute('data-image-mobile');
+      const desktopImageUrl = this.getAttribute('data-image-desktop');
+      const imageUrl = window.innerWidth >= 1024 ? desktopImageUrl : mobileImageUrl;
+
+      console.log("Hovered Image URL:", imageUrl); // Log the URL
+      menuOverlay.style.backgroundImage = `url(${imageUrl})`;
+    });
+
+    item.addEventListener('mouseleave', function() {
+      menuOverlay.style.backgroundImage = 'none';
+    });
+  });
+
+
+
 }
+
 
 export default initiateNavigation;

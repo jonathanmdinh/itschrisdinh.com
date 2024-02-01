@@ -3,19 +3,3 @@
     @apply fixed;
   }
 }
-
-.nav-list li {
-  margin-bottom: 1.5rem;
-}
-.nav-list a{
-  font-size: 3rem; // text-5xl
-
-  @media (min-width: 768px) { // md:
-    font-size: 5rem; // text-6xl
-    text-align: right;
-  }
-
-  @media (min-width: 1030px) { // lg:
-    font-size: 3rem; // text-5xl
-  }
-}

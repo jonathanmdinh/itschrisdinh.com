@@ -30,11 +30,9 @@ $menuItems = has_nav_menu('primary_navigation') ? wp_get_nav_menu_items('primary
                                     @php
                                         // Retrieve custom fields for each menu item, if available
                                         $navigation_image = get_field('navigation__image', $menuItem);
-                                        $image_mobile = $navigation_image['navigation__item-image-mobile'] ?? '';
-                                        $image_desktop = $navigation_image['navigation__item-image-desktop'] ?? '';
                                     @endphp
                                     <!-- Menu item with dynamic images for mobile and desktop -->
-                                    <li class="nav-item mb-6" data-image-mobile="{{ $image_mobile }}" data-image-desktop="{{ $image_desktop }}">
+                                    <li class="nav-item mb-6" data-image="{{ $navigation_image }}">
                                         <a href="{{ $menuItem->url }}" class="text-5xl hover:text-6xl lg:text-5xl">
                                             {{ $menuItem->title }}
                                         </a>

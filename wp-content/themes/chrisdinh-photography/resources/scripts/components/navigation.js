@@ -30,24 +30,21 @@ function initiateNavigation() {
 
   document.querySelectorAll('.nav-item').forEach(item => {
     item.addEventListener('mouseenter', function() {
-      const mobileImageUrl = this.getAttribute('data-image-mobile');
-      const desktopImageUrl = this.getAttribute('data-image-desktop');
-      const imageUrl = window.innerWidth >= 1024 ? desktopImageUrl : mobileImageUrl;
+      const backgroundImage = this.getAttribute('data-image');
 
-      if (currentBackgroundImage !== imageUrl) {
+      if (currentBackgroundImage !== backgroundImage) {
 
-
-        updateBackgroundImage(imageUrl, backgroundImageContainer, backgroundImageContainer2);
-        currentBackgroundImage = imageUrl;
+        updateBackgroundImage(backgroundImage, backgroundImageContainer, backgroundImageContainer2);
+        currentBackgroundImage = backgroundImage;
       }
     });
   });
 }
 
-function updateBackgroundImage(newImageUrl, container1, container2) {
+function updateBackgroundImage(newbackgroundImage, container1, container2) {
   // Set the new image on the inactive container and fade it in
   if (!container1.classList.contains('opacity-40')) {
-    container1.style.backgroundImage = `url(${newImageUrl})`;
+    container1.style.backgroundImage = `url(${newbackgroundImage})`;
     container1.classList.remove('opacity-0');
     container1.classList.add('opacity-40');
 
@@ -55,7 +52,7 @@ function updateBackgroundImage(newImageUrl, container1, container2) {
     container2.classList.remove('opacity-40');
     container2.classList.add('opacity-0');
   } else {
-    container2.style.backgroundImage = `url(${newImageUrl})`;
+    container2.style.backgroundImage = `url(${newbackgroundImage})`;
     container2.classList.remove('opacity-0');
     container2.classList.add('opacity-40');
 

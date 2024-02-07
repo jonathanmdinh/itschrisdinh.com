@@ -24,8 +24,8 @@ $menuItems = has_nav_menu('primary_navigation') ? wp_get_nav_menu_items('primary
                 <div id="backgroundImageContainer2" class="fixed inset-0 bg-cover bg-center opacity-0 transition-opacity duration-1000 ease-in-out z-0"></div>
                     <!-- Navigation Menu -->
                     <div class="flex h-full flex-col-reverse lg:flex-row justify-between items-center z">
-                        <nav class="w-full flex flex-col justify-end items-end p-4 text-white lg:w-1/2 lg:justify-start lg:items-start lg:pl-48 z-20" aria-label="Primary Navigation">
-                            <ul class="flex flex-col w-full items-end lg:items-start">
+                        <nav class="w-full flex flex-col justify-end items-end text-white lg:w-1/2 lg:justify-start lg:items-start lg:pl-48 z-20" aria-label="Primary Navigation">
+                            <ul class="flex flex-col w-full items-end pr-6 lg:items-start">
                                 @foreach ($menuItems as $menuItem)
                                     @php
                                         // Retrieve custom fields for each menu item, if available
@@ -42,7 +42,7 @@ $menuItems = has_nav_menu('primary_navigation') ? wp_get_nav_menu_items('primary
                         </nav>
 
                         <!-- Contect Information section -->
-                        <div class="w-full flex flex-col justify-start items-start p-4 pt-24 text-white whitespace-nowrap lg:w-1/2 lg:pr-48 z-20">
+                        <div class="w-full flex flex-col justify-start items-start pl-6 pt-24 text-white whitespace-nowrap lg:w-1/2 lg:pr-48 z-20">
                             <!-- Displaying contact information using ACF fields, resorts to default values if unavailable -->
                             <p class="text-2xl md:text-4xl">{{ $social_media_handle ?? '@itschrisdinh' }}</p>
                             <p class="text-2xl md:text-4xl">{{ $phone_number ?? '+1 (516) 582-3698' }}</p>

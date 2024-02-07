@@ -22,12 +22,8 @@
                         <nav class="w-full flex flex-col justify-end items-end text-white lg:w-1/2 lg:justify-start lg:items-start lg:pl-48 z-20" aria-label="Primary Navigation">
                             <ul class="flex flex-col w-full items-end pr-6 lg:items-start">
                                 @foreach ($menuItems as $menuItem)
-                                    @php
-                                        // Retrieve custom fields for each menu item, if available
-                                        $navigation_image = get_field('navigation__image', $menuItem);
-                                    @endphp
                                     <!-- Menu item with dynamic images for mobile and desktop -->
-                                    <li class="nav-item mb-6" data-image="{{ $navigation_image }}">
+                                    <li class="nav-item mb-6" data-image="{{ $menuItem->navigation_image }}">
                                         <a href="{{ $menuItem->url }}" class="inline-block text-5xl lg:text-5xl transition-transform duration-300 ease-in-out hover:scale-110 {{ $menuItem->target === '_blank' ? 'target=_blank' : '' }}" rel="{{ $menuItem->target === '_blank' ? 'noopener noreferrer' : '' }}">
                                             {{ $menuItem->title }}
                                         </a>

@@ -22,7 +22,7 @@
         {
             "key": "field_65baaf4a2690f",
             "label": "Navigation Image",
-            "name": "navigation__images",
+            "name": "navigation_image",
             "aria-label": "",
             "type": "image",
             "instructions": "",
@@ -63,5 +63,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1706824651
+    "modified": 1707337080
 }

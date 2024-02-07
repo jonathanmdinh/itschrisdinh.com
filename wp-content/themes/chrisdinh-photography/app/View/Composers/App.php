@@ -45,11 +45,17 @@ class App extends Composer
      */
     protected function menuItems()
     {
-        // Ensure the function exists to prevent errors in non-WordPress contexts
-        if (function_exists('has_nav_menu') && function_exists('wp_get_nav_menu_items')) {
-            return has_nav_menu('primary_navigation') ? wp_get_nav_menu_items('primary_navigation') : [];
+        $items = [];
+
+        if (function_exists('has_nav_menu') && function_exists('wp_get_nav_menu_items') && has_nav_menu('primary_navigation')) {
+            $menuItems = wp_get_nav_menu_items('primary_navigation');
+
+            foreach ($menuItems as $item) {
+                $item->navigation_image = get_field('navigation_image', $item);
+                $items[] = $item;
+            }
         }
 
-        return [];
+        return $items;
     }
 }

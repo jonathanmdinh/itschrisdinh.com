@@ -44,9 +44,9 @@ $menuItems = has_nav_menu('primary_navigation') ? wp_get_nav_menu_items('primary
                         <!-- Contect Information section -->
                         <div class="w-full flex flex-col justify-start items-start pl-6 pt-24 text-white whitespace-nowrap lg:w-1/2 lg:pr-48 z-20">
                             <!-- Displaying contact information using ACF fields, resorts to default values if unavailable -->
-                            <p class="text-2xl md:text-4xl">{{ $social_media_handle ?? '@itschrisdinh' }}</p>
-                            <p class="text-2xl md:text-4xl">{{ $phone_number ?? '+1 (516) 582-3698' }}</p>
-                            <p class="text-2xl md:text-4xl">{{ $email_address ?? 'itschrisdinh@gmail.com' }}</p>
+                            <a href="https://www.instagram.com/itschrisdinh/" class="text-2xl md:text-4xl">{{ $social_media_handle ?? '@itschrisdinh' }}</a>
+                            <a href="tel:+15165823698" class="text-2xl md:text-4xl">{{ $phone_number ?? '+1 (516) 582-3698' }}</a>
+                            <a href="mailto:itschrisdinh@gmail.com" class="text-2xl md:text-4xl">{{ $email_address ?? 'itschrisdinh@gmail.com' }}</a>
                         </div>
                     </div>
                 </div>

@@ -28,7 +28,7 @@
                                     @endphp
                                     <!-- Menu item with dynamic images for mobile and desktop -->
                                     <li class="nav-item mb-6" data-image="{{ $navigation_image }}">
-                                        <a href="{{ $menuItem->url }}" class="{{ $menuItem->target === '_blank' ? 'target=_blank' : '' }} text-5xl hover:text-6xl lg:text-5xl" rel="{{ $menuItem->target === '_blank' ? 'noopener noreferrer' : '' }}">
+                                        <a href="{{ $menuItem->url }}" class="{{ $menuItem->target === '_blank' ? 'target=_blank' : '' }} text-5xl lg:text-5xl" rel="{{ $menuItem->target === '_blank' ? 'noopener noreferrer' : '' }}">
                                             {{ $menuItem->title }}
                                         </a>
                                     </li>

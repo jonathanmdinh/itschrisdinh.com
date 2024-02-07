@@ -1,8 +1,3 @@
-@php
-// Fetch menu items from the 'primary_navigation' menu if it exists. If not, return an empty array.
-$menuItems = has_nav_menu('primary_navigation') ? wp_get_nav_menu_items('primary_navigation') : [];
-@endphp
-
 <header class="banner relative">
     <!-- Brand logo linking to the homepage -->
     <a href="{{ home_url('/') }}" class="brand component font-logo text-3xl md:text-4xl lg:text-5xl text-white absolute top-8 left-10 md:top-20 md:left-24 z-10">

@@ -24,6 +24,7 @@ class App extends Composer
     {
         return [
             'siteName' => $this->siteName(),
+            'menuItems' => $this->menuItems(),
         ];
     }
 
@@ -35,5 +36,20 @@ class App extends Composer
     public function siteName()
     {
         return get_bloginfo('name', 'display');
+    }
+
+    /**
+     * Fetch menu items from the 'primary_navigation' menu if it exists. If not, return an empty array.
+     *
+     * @return array
+     */
+    protected function menuItems()
+    {
+        // Ensure the function exists to prevent errors in non-WordPress contexts
+        if (function_exists('has_nav_menu') && function_exists('wp_get_nav_menu_items')) {
+            return has_nav_menu('primary_navigation') ? wp_get_nav_menu_items('primary_navigation') : [];
+        }
+
+        return [];
     }
 }

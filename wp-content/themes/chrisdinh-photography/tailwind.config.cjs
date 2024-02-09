@@ -27,6 +27,9 @@ module.exports = {
       padding: {},
       blur: {
         xs: '2px'
+      },
+      zIndex: {
+        1: 1
       }
     },
     fontFamily: {
@@ -37,7 +40,7 @@ module.exports = {
   plugins: [],
   safelist: [
     {
-      pattern: /(md\:|lg\:|)-(grid-cols-gallery|grid-rows-gallery)/
+      pattern: /(md\:|lg\:)-(grid-cols-gallery|grid-rows-gallery)/
     }
   ]
 };

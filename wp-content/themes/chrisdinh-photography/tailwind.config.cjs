@@ -23,6 +23,10 @@ module.exports = {
       },
       gridTemplateRows: {
         'gallery': 'repeat(4, 300px)'
+      },
+      padding: {},
+      blur: {
+        xs: '2px'
       }
     },
     fontFamily: {

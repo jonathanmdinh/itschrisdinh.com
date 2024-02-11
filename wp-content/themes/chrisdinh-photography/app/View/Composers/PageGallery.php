@@ -3,7 +3,7 @@ namespace App\View\Composers;
 
 use Roots\Acorn\View\Composer;
 
-class FrontPage extends Composer {
+class PageGallery extends Composer {
     /**
      * List of views served by this composer.
      *
@@ -23,6 +23,18 @@ class FrontPage extends Composer {
         return $posts;
     }
 
+    private function getThumbnailSliderSettings() {
+        $thumbnailSliderSettings = get_field('gallery__thumbnail-slider-settings');
+
+        return $thumbnailSliderSettings;
+    }
+
+    private function getMainSliderSettings() {
+        $mainSliderSettings = get_field('gallery__main-slider-settings');
+
+        return $mainSliderSettings;
+    }
+
     /**
      * Data to be passed to view before rendering.
      *
@@ -31,8 +43,9 @@ class FrontPage extends Composer {
     public function with() {
         return [
             'siteName' => $this->siteName(),
-            'test' => 'look at that',
-            'galleryItems' => $this->getGalleryItems()
+            'galleryItems' => $this->getGalleryItems(),
+            'thumbnailSliderSettings' => $this->getThumbnailSliderSettings(),
+            'mainSliderSettings' => $this->getMainSliderSettings()
         ];
     }
 

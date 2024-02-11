@@ -22,14 +22,6 @@ class GalleryCollections extends Component {
         ]);
     }
 
-    public function collectionSlug() {
-        return $this->collectionSlug;
-    }
-
-    public function terms() {
-        return $this->terms;
-    }
-
     /**
      * Get the view / contents that represent the component.
      *

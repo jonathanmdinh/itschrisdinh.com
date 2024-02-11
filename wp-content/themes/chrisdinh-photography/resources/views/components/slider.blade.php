@@ -14,12 +14,10 @@
     ];
 @endphp
 
-<!--front-end view of the slider component-->
-<!--run yarn build/dev before coding to implement new tailwind code-->
-@unless ( empty($data) )
-    <!--parent container of the slider -->
-    <!--uses splidejs.com, read the documentation-->
-    <section id="{{ $sliderSettings['slider__id'] }}"  class="relative w-screen h-screen splider splide"
+<slider>
+    <section
+        id="{{ $sliderSettings['slider__id'] }}"
+        class="{{ $sliderSectionClasses }} splider splide"
         data-type="{{ $sliderSettings['slider__type'] }}"
         data-speed="{{ implode(',', $sliderSettings['slider__speed'])  }}"
         data-width="{{ implode(',', $sliderSettings['slider__width']) }}"
@@ -32,7 +30,7 @@
         @if ($sliderSettings['slider__custom-pagination'])
             data-custom-pagination="<?php echo get_field('slider__custom-pagination') ? 'true' : 'false'; ?>"
         @endif
-    >
+        >
         <div class="flex justify-center items-center">
             <div class="splide__arrows z-10">
                 <button class="splide__arrow splide__arrow--prev !bg-transparent z-10">
@@ -43,16 +41,9 @@
                 </button>
             </div>
             <div class="splide__track justify-center items-center">
-                <ul class="splide__list ">
-                    @foreach ($data as $item)
-                    <!--figure out how to get the 4th image to fill the container -->
-                        <li class="splide__slide relative flex items-center justify-center">
-                            <picture class="block relative w-full h-auto">
-                                <source srcset="{{ wp_get_attachment_image_srcset( $item['homepage__slide-image-desktop']['ID'] ) }}" media="(min-width: 50em)">
-                                <source srcset="{{ wp_get_attachment_image_srcset( $item['homepage__slide-image-mobile']['ID'] ) }}">
-                                <img alt="{{ $item['homepage__slide-image-mobile']['alt'] }}" class="w-full h-full object-cover object-center">
-                            </picture>
-                        </li>
+                <ul class="splide__list">
+                    @foreach ($slideViewTemplateData as $item)
+                        @include($slideViewTemplatePath, ['data' => $item])
                     @endforeach
                 </ul>
             </div>
@@ -62,4 +53,4 @@
             @endif
         </div>
     </section>
-@endunless
+</slider>

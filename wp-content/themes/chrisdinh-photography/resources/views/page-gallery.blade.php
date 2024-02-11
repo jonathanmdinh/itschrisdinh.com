@@ -24,4 +24,9 @@
 
     @include('components.back-to-top');
 
+    <x-slider slider-settings-acf-name="gallery__thumbnail-slider-settings" slide-view-template-path="components.alert" :slide-view-template-data="$galleryItems" slider-section-classes="relative w-screen h-screen"></x-slider>
+
+    <div class="gallery-popup fixed h-screen w-screen bg-black opacity-70 block top-0 left-0 right-0 bottom-0 z-[40]">
+
+    </div>
 @endsection

@@ -22,9 +22,9 @@
                         <nav class="w-full flex flex-col justify-end items-end text-white lg:w-1/2 lg:justify-start lg:items-start lg:pl-48 z-20" aria-label="Primary Navigation">
                             <ul class="flex flex-col w-full items-end pr-6 lg:items-start">
                                 @foreach ($menuItems as $menuItem)
-                                    <!-- Menu item with dynamic images for mobile and desktop -->
                                     <li class="nav-item mb-6" data-image="{{ $menuItem->navigation_image }}">
-                                        <a href="{{ $menuItem->url }}" class="inline-block text-5xl lg:text-5xl transition-transform duration-300 ease-in-out hover:scale-110 {{ $menuItem->target === '_blank' ? 'target=_blank' : '' }}" rel="{{ $menuItem->target === '_blank' ? 'noopener noreferrer' : '' }}">
+                                        <a href="{{ $menuItem->url }}" class="inline-block text-5xl lg:text-5xl transition-transform duration-300 ease-in-out hover:scale-110"
+                                        @if ($menuItem->target === '_blank') target="_blank" rel="noopener noreferrer" @endif>
                                             {{ $menuItem->title }}
                                         </a>
                                     </li>
@@ -32,12 +32,23 @@
                             </ul>
                         </nav>
 
-                        <!-- Contect Information section -->
                         <div class="w-full flex flex-col justify-start items-start pl-6 pt-24 text-white whitespace-nowrap lg:w-1/2 lg:pr-48 z-20">
-                            <!-- Displaying contact information using ACF fields, resorts to default values if unavailable -->
-                            <a href="https://www.instagram.com/itschrisdinh/" class="text-2xl md:text-4xl">{{ $social_media_handle ?? '@itschrisdinh' }}</a>
-                            <a href="tel:+15165823698" class="text-2xl md:text-4xl">{{ $phone_number ?? '+1 (516) 582-3698' }}</a>
-                            <a href="mailto:itschrisdinh@gmail.com" class="text-2xl md:text-4xl">{{ $email_address ?? 'itschrisdinh@gmail.com' }}</a>
+                            @if (!empty($contactInformation))
+                                <!-- Display the Instagram link and handle -->
+                                @if (!empty($contactInformation['contact__instagram-link']) && !empty($contactInformation['contact__instagram-handle']))
+                                    <a href="{{ $contactInformation['contact__instagram-link'] }}" class="text-2xl md:text-4xl transition-transform duration-300 ease-in-out hover:scale-110">{{ $contactInformation['contact__instagram-handle'] }}</a>
+                                @endif
+
+                                <!-- Display the phone number -->
+                                @if (!empty($contactInformation['contact__phone-number']))
+                                    <a href="tel:{{ $contactInformation['contact__phone-number'] }}" class="text-2xl md:text-4xl transition-transform duration-300 ease-in-out hover:scale-110">{{ $contactInformation['contact__phone-number'] }}</a>
+                                @endif
+
+                                <!-- Display the email address -->
+                                @if (!empty($contactInformation['contact__email-address']))
+                                    <a href="mailto:{{ $contactInformation['contact__email-address'] }}" class="text-2xl md:text-4xl transition-transform duration-300 ease-in-out hover:scale-110">{{ $contactInformation['contact__email-address'] }}</a>
+                                @endif
+                            @endif
                         </div>
                     </div>
                 </div>

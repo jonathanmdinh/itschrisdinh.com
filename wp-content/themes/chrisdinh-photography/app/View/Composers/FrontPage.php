@@ -24,6 +24,12 @@ class FrontPage extends Composer {
         return get_field('homepage__slider-settings');
     }
 
+    private function getContactInformation() {
+        // Fetch the 'contact_information' group from ACF options
+        return get_field('contact_information', 'option');
+    }
+
+
     /**
      * Data to be passed to view before rendering.
      *
@@ -34,7 +40,8 @@ class FrontPage extends Composer {
             'siteName' => $this->siteName(),
             'test' => 'look at that',
             'slides' => $this->getHomepageSliderData(),
-            'sliderSettings' => $this->getHomepageSliderSettings()
+            'sliderSettings' => $this->getHomepageSliderSettings(),
+            'contactInformation' => $this->getContactInformation(),
         ];
     }
 

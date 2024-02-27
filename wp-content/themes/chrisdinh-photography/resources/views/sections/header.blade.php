@@ -23,8 +23,9 @@
                             <ul class="flex flex-col w-full items-end pr-6 lg:items-start">
                                 @foreach ($menuItems as $menuItem)
                                     <li class="nav-item mb-6" data-image="{{ $menuItem->navigation_image }}">
-                                        <a href="{{ $menuItem->url }}" class="inline-block text-5xl lg:text-5xl transition-transform duration-300 ease-in-out hover:scale-110"
-                                        @if ($menuItem->target === '_blank') target="_blank" rel="noopener noreferrer" @endif>
+                                        <a href="{{ $menuItem->url }}"
+                                        class="inline-block text-5xl lg:text-5xl transition-transform duration-300 ease-in-out hover:scale-110"
+                                        @if ($menuItem->link_target === '_blank') target="_blank" rel="noopener noreferrer" @endif>
                                             {{ $menuItem->title }}
                                         </a>
                                     </li>

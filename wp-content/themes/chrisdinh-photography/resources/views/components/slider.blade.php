@@ -27,6 +27,9 @@
         data-gap="{{ implode(',', $sliderSettings['slider__gap']) }}"
         data-arrows="{{ implode(',', $sliderSettings['slider__arrows']) }}"
         data-pagination="{{ implode(',', $sliderSettings['slider__pagination'])}}"
+        data-mobile-custom-settings="{{ !empty($sliderCustomSettings['mobile']) ? json_encode($sliderCustomSettings['mobile']) : '' }}"
+        data-tablet-custom-settings="{{ !empty($sliderCustomSettings['tablet']) ? json_encode($sliderCustomSettings['mobile']) : '' }}"
+        data-desktop-custom-settings="{{ !empty($sliderCustomSettings['desktop']) ? json_encode($sliderCustomSettings['desktop']) : '' }}"
         @if ($sliderSettings['slider__custom-pagination'])
             data-custom-pagination="<?php echo get_field('slider__custom-pagination') ? 'true' : 'false'; ?>"
         @endif
@@ -54,3 +57,6 @@
         </div>
     </section>
 </slider>
+<pre>
+    @dump($sliderCustomSettings)
+</pre>

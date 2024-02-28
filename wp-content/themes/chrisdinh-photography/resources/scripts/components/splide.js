@@ -30,6 +30,12 @@ const setSliderSettings = ( slider ) => {
   const tabletArrows = arrowSettings[1] === 'true';
   const desktopArrows = arrowSettings[2] === 'true';
 
+  const mobileCustomSettings = slider.dataset.mobileCustomSettings;
+  const tabletCustomSettings = slider.dataset.tabletCustomSettings;
+  const desktopCustomSettings = slider.dataset.desktopCustomSettings;
+
+  console.log(JSON.parse(mobileCustomSettings), JSON.parse(tabletCustomSettings), JSON.parse(desktopCustomSettings));
+
   const sliderOptions = {
     rewind: true, //allow the carousel to infinitely loop.
     pagination: desktopPagination,
@@ -47,6 +53,11 @@ const setSliderSettings = ( slider ) => {
       }
     }
   };
+
+  // sliderOptions.breakpoints['768'] = {...sliderOptions.breakpoints['768'], ...mobileCustomSettings.reduce( (obj, item) => (obj[item.key] = item.value, obj))};
+  console.log(sliderOptions);
+  console.log( JSON.parse(mobileCustomSettings).reduce( (obj, item) => (obj[item.key] = item.value, obj), {}) )
+
   sliderOptions.type = slider.dataset.sliderType ? slider.dataset.sliderType : 'loop'; // Set loop as default slider type if none is provided
   sliderOptions.mediaQuery = 'min'; // Set mediaQuery to min so our breakpoints are mobile first
 

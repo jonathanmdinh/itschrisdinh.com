@@ -12,6 +12,7 @@ class Slider extends Component {
     public $acfPostId = '';
     public $sliderSectionClasses;
 
+    public $sliderCustomSettings = [];
     public $sliderAcfJSONData = '';
 
     /**
@@ -30,6 +31,44 @@ class Slider extends Component {
         $this->acfPostId = $acfPostId;
         $this->sliderSectionClasses = $sliderSectionClasses;
         $this->sliderSettings = get_field( $sliderSettingsAcfName, $acfPostId );
+
+        $this->sliderCustomSettings = $this->formatCustomSliderSettings();
+    }
+
+    private function setUpSliderJSONSettings() {
+        $settingsToIgnore = [
+            'slider__custom-pagination'
+        ];
+    }
+
+    private function formatCustomSliderSettings() {
+        $mobileSliderSettings = [];
+        $tabletSliderSettings = [];
+        $desktopSliderSettings = [];
+
+        if ( !empty($this->sliderSettings['slider__custom-settings']) ) {
+            foreach ( $this->sliderSettings['slider__custom-settings'] as $breakpoint => $settings ) {
+                foreach ($settings as $pair => $values) {
+                    switch ($breakpoint) {
+                        case 'mobile':
+                            array_push($mobileSliderSettings, [$values['setting_name'] => $values['value']]);
+                            break;
+                        case 'tablet':
+                            array_push($tabletSliderSettings, [$values['setting_name'] => $values['value']]);
+                            break;
+                        case 'desktop':
+                            array_push($desktopSliderSettings, [$values['setting_name'] => $values['value']]);
+                            break;
+                    }
+                }
+            }
+        }
+
+        return [
+            'mobile' => $mobileSliderSettings,
+            'tablet' => $tabletSliderSettings,
+            'desktop' => $desktopSliderSettings
+        ];
     }
 
     /**

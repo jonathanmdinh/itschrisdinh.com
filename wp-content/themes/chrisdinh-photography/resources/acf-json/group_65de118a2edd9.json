@@ -23,7 +23,7 @@
                     "label": "Instagram Link",
                     "name": "contact__instagram-link",
                     "aria-label": "",
-                    "type": "url",
+                    "type": "group",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -32,8 +32,52 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "https:\/\/www.instagram.com\/itschrisdinh\/",
-                    "placeholder": ""
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_65e0ff35ea2cb",
+                            "label": "Instagram URL",
+                            "name": "instagram_url",
+                            "aria-label": "",
+                            "type": "url",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "https:\/\/www.instagram.com\/itschrisdinh\/",
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_65e0ff59ea2cc",
+                            "label": "Link Target",
+                            "name": "link_target",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "_self": "Same Tab",
+                                "_blank": "New Tab"
+                            },
+                            "default_value": "_self",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        }
+                    ]
                 },
                 {
                     "key": "field_65de124fe872b",
@@ -115,5 +159,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1709058233
+    "modified": 1709244316
 }

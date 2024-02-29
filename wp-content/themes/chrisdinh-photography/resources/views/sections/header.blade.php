@@ -35,9 +35,16 @@
 
                         <div class="w-full flex flex-col justify-start items-start pl-6 pt-24 text-white whitespace-nowrap lg:w-1/2 lg:pr-48 z-20">
                             @if (!empty($contactInformation))
-                                <!-- Display the Instagram link and handle -->
-                                @if (!empty($contactInformation['contact__instagram-link']) && !empty($contactInformation['contact__instagram-handle']))
-                                    <a href="{{ $contactInformation['contact__instagram-link'] }}" class="text-2xl md:text-4xl transition-transform duration-300 ease-in-out hover:scale-110">{{ $contactInformation['contact__instagram-handle'] }}</a>
+                                @php
+                                    $instagramGroup = $contactInformation['contact__instagram-link'] ?? null;
+                                    $instagramUrl = $instagramGroup['instagram_url'] ?? 'https://www.instagram.com/itschrisdinh/';
+                                    $instagramTarget = $instagramGroup['link_target'] ?? '_self';
+                                @endphp
+
+                                @if (!empty($instagramUrl))
+                                    <a href="{{ $instagramUrl }}" class="text-2xl md:text-4xl transition-transform duration-300 ease-in-out hover:scale-110" target= $instagramURL rel="noopener noreferrer">
+                                        {{ $contactInformation['contact__instagram-handle'] }}
+                                    </a>
                                 @endif
 
                                 <!-- Display the phone number -->

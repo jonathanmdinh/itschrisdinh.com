@@ -25,6 +25,7 @@ class App extends Composer
         return [
             'siteName' => $this->siteName(),
             'menuItems' => $this->menuItems(),
+            'contactInformation' => $this->getContactInformation(),
         ];
     }
 
@@ -57,5 +58,10 @@ class App extends Composer
         }
 
         return $items;
+    }
+
+    private function getContactInformation() {
+        // Fetch the 'contact_information' group from ACF options
+        return get_field('contact_information', 'option');
     }
 }

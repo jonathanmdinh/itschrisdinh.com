@@ -5,14 +5,14 @@ const initiateSplideSlider = ( selector = '.splide' ) => {
   if ( sliders.length > 0 ) {
     sliders.forEach( slider => {
 
-      const sliderSettings = setSliderSettings( slider );
+      const sliderSettingsJSON = slider.dataset.splide ? JSON.parse(slider.dataset.splide) : {};
       const sliderId = slider.id;
 
-      if ( sliderId ) {
-        const splide = new Splide(`#${sliderId}`, sliderSettings).mount();
+      if ( sliderId && Object.keys(sliderSettingsJSON).length > 0 ) {
+        const splide = new Splide(`#${sliderId}`, sliderSettingsJSON).mount();
 
         if (slider.dataset.customPagination === 'true') {
-          applyCustomPagination(splide);
+          applyCustomPagination(slider, splide);
         }
       }
     });
@@ -89,8 +89,8 @@ const setSliderSettings = ( slider ) => {
 }
 
 
-const applyCustomPagination = (splide) => {
-  const pagination = splide.Components.Elements.pagination;
+const applyCustomPagination = (slider, splide) => {
+  const pagination = slider.querySelector('.splide__custom-pagination');
 
   const updatePagination = () => {
     const activeIndex = splide.index;

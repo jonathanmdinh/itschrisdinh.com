@@ -3,6 +3,24 @@
     "title": "Slide Settings",
     "fields": [
         {
+            "key": "field_65f0fe36a4889",
+            "label": "General Settings",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 1,
+            "endpoint": 0
+        },
+        {
             "key": "field_644440cd74fd3",
             "label": "ID",
             "name": "slider__id",
@@ -23,11 +41,49 @@
             "append": ""
         },
         {
-            "key": "field_64435178eca72",
-            "label": "Slider Type",
-            "name": "slider__type",
+            "key": "field_65f11001bc2db",
+            "label": "Slider Classes",
+            "name": "slider__classes",
             "aria-label": "",
-            "type": "select",
+            "type": "text",
+            "instructions": "Space separated string of classes to add to the parent container at the same level of the slides ID",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_65f0fe9ba488a",
+            "label": "Splide Settings",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "Settings specifically from splide",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_64435178eca72",
+            "label": "Type",
+            "name": "type",
+            "aria-label": "",
+            "type": "group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -36,23 +92,95 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "slide": "Slide",
-                "loop": "Loop",
-                "fade": "Fade"
-            },
-            "default_value": "loop",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
+            "layout": "table",
+            "sub_fields": [
+                {
+                    "key": "field_65f0fdd0e5c17",
+                    "label": "Mobile",
+                    "name": "mobile",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "slide": "Slide",
+                        "loop": "Loop",
+                        "fade": "Fade"
+                    },
+                    "default_value": "loop",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_65f0fddfe5c18",
+                    "label": "Tablet",
+                    "name": "tablet",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "slide": "Slide",
+                        "loop": "Loop",
+                        "fade": "Fade"
+                    },
+                    "default_value": "loop",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_65f0fde4e5c19",
+                    "label": "Desktop",
+                    "name": "desktop",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "slide": "Slide",
+                        "loop": "Loop",
+                        "fade": "Fade"
+                    },
+                    "default_value": "loop",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": ""
+                }
+            ]
         },
         {
             "key": "field_65c838a46f66c",
             "label": "Rewind",
-            "name": "slider__rewind",
+            "name": "rewind",
             "aria-label": "",
             "type": "group",
             "instructions": "Whether or not the slider should infinite loop",
@@ -130,7 +258,7 @@
         {
             "key": "field_644351e1eca73",
             "label": "Speed",
-            "name": "slider__speed",
+            "name": "speed",
             "aria-label": "",
             "type": "group",
             "instructions": "The speed at which each slide transitions to the next slide",
@@ -146,7 +274,7 @@
                 {
                     "key": "field_6443527ceca74",
                     "label": "Mobile",
-                    "name": "speed__mobile",
+                    "name": "mobile",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -166,7 +294,7 @@
                 {
                     "key": "field_6443528feca75",
                     "label": "Tablet",
-                    "name": "speed__tablet",
+                    "name": "tablet",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -186,7 +314,7 @@
                 {
                     "key": "field_64435297eca76",
                     "label": "Desktop",
-                    "name": "speed__desktop",
+                    "name": "desktop",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -208,7 +336,7 @@
         {
             "key": "field_644352b6eca77",
             "label": "Width",
-            "name": "slider__width",
+            "name": "width",
             "aria-label": "",
             "type": "group",
             "instructions": "The width of the slider. %, em, px, vw values allowed.",
@@ -224,7 +352,7 @@
                 {
                     "key": "field_6443542deca78",
                     "label": "Mobile",
-                    "name": "width_mobile",
+                    "name": "mobile",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -244,7 +372,7 @@
                 {
                     "key": "field_64435438eca79",
                     "label": "Tablet",
-                    "name": "width_tablet",
+                    "name": "tablet",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -264,7 +392,7 @@
                 {
                     "key": "field_64435443eca7a",
                     "label": "Desktop",
-                    "name": "width_desktop",
+                    "name": "desktop",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -286,7 +414,7 @@
         {
             "key": "field_6443548aeca7b",
             "label": "Height",
-            "name": "slider__height",
+            "name": "height",
             "aria-label": "",
             "type": "group",
             "instructions": "",
@@ -302,7 +430,7 @@
                 {
                     "key": "field_64435494eca7c",
                     "label": "Mobile",
-                    "name": "height_mobile",
+                    "name": "mobile",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -322,7 +450,7 @@
                 {
                     "key": "field_644354a1eca7d",
                     "label": "Tablet",
-                    "name": "height_tablet",
+                    "name": "tablet",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -342,7 +470,7 @@
                 {
                     "key": "field_644354a9eca7e",
                     "label": "Desktop",
-                    "name": "height_desktop",
+                    "name": "desktop",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -364,7 +492,7 @@
         {
             "key": "field_644354bbeca7f",
             "label": "Per Page",
-            "name": "slider__per-page",
+            "name": "perPage",
             "aria-label": "",
             "type": "group",
             "instructions": "Set the amount of slides that show at a time",
@@ -380,7 +508,7 @@
                 {
                     "key": "field_644354c8eca80",
                     "label": "Mobile",
-                    "name": "mobile_per_page",
+                    "name": "mobile",
                     "aria-label": "",
                     "type": "number",
                     "instructions": "",
@@ -402,7 +530,7 @@
                 {
                     "key": "field_644354dfeca81",
                     "label": "Tablet",
-                    "name": "tablet_per_page",
+                    "name": "tablet",
                     "aria-label": "",
                     "type": "number",
                     "instructions": "",
@@ -424,7 +552,7 @@
                 {
                     "key": "field_644354e7eca82",
                     "label": "Desktop",
-                    "name": "desktop_per_page",
+                    "name": "desktop",
                     "aria-label": "",
                     "type": "number",
                     "instructions": "",
@@ -448,7 +576,7 @@
         {
             "key": "field_6443551ceca83",
             "label": "Per Move",
-            "name": "slider__per-move",
+            "name": "perMove",
             "aria-label": "",
             "type": "group",
             "instructions": "Set the amount of slides that move at a time",
@@ -464,7 +592,7 @@
                 {
                     "key": "field_6443552aeca84",
                     "label": "Mobile",
-                    "name": "mobile_per_move",
+                    "name": "mobile",
                     "aria-label": "",
                     "type": "number",
                     "instructions": "",
@@ -486,7 +614,7 @@
                 {
                     "key": "field_64435539eca85",
                     "label": "Tablet",
-                    "name": "tablet_per_move",
+                    "name": "tablet",
                     "aria-label": "",
                     "type": "number",
                     "instructions": "",
@@ -508,7 +636,7 @@
                 {
                     "key": "field_64435542eca86",
                     "label": "Desktop",
-                    "name": "desktop_per_move",
+                    "name": "desktop",
                     "aria-label": "",
                     "type": "number",
                     "instructions": "",
@@ -532,7 +660,7 @@
         {
             "key": "field_644355bfeca87",
             "label": "Gap",
-            "name": "slider__gap",
+            "name": "gap",
             "aria-label": "",
             "type": "group",
             "instructions": "The gap between each slide. px, em, % values allowed.",
@@ -548,7 +676,7 @@
                 {
                     "key": "field_644355ddeca88",
                     "label": "Mobile",
-                    "name": "mobile_gap",
+                    "name": "mobile",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -568,7 +696,7 @@
                 {
                     "key": "field_644355ebeca89",
                     "label": "Tablet",
-                    "name": "tablet_gap",
+                    "name": "tablet",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -588,7 +716,7 @@
                 {
                     "key": "field_644355f3eca8a",
                     "label": "Desktop",
-                    "name": "desktop_gap",
+                    "name": "desktop",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -610,7 +738,7 @@
         {
             "key": "field_6443561aeca8b",
             "label": "Arrows",
-            "name": "slider__arrows",
+            "name": "arrows",
             "aria-label": "",
             "type": "group",
             "instructions": "Whether to display arrows or not. Enter \"true\" or \"false\" only.",
@@ -626,9 +754,9 @@
                 {
                     "key": "field_6443562beca8c",
                     "label": "Mobile",
-                    "name": "mobile_arrows",
+                    "name": "mobile",
                     "aria-label": "",
-                    "type": "text",
+                    "type": "true_false",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -637,18 +765,18 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "false",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
+                    "message": "",
+                    "default_value": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "ui": 1
                 },
                 {
                     "key": "field_64435637eca8d",
                     "label": "Tablet",
-                    "name": "tablet_arrows",
+                    "name": "tablet",
                     "aria-label": "",
-                    "type": "text",
+                    "type": "true_false",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -657,18 +785,18 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "false",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
+                    "message": "",
+                    "default_value": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "ui": 1
                 },
                 {
                     "key": "field_64435640eca8e",
                     "label": "Desktop",
-                    "name": "desktop_arrows",
+                    "name": "desktop",
                     "aria-label": "",
-                    "type": "text",
+                    "type": "true_false",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -677,38 +805,18 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "false",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
+                    "message": "",
+                    "default_value": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "ui": 1
                 }
             ]
         },
         {
-            "key": "field_65723fb5e82c1",
-            "label": "Show Arrows",
-            "name": "slider__show-arrows",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "toggle arrows on\/off: checked = yes",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "Show Arrows",
-            "default_value": 1,
-            "ui_on_text": "",
-            "ui_off_text": "",
-            "ui": 1
-        },
-        {
             "key": "field_6443565feca8f",
             "label": "Pagination",
-            "name": "slider__pagination",
+            "name": "pagination",
             "aria-label": "",
             "type": "group",
             "instructions": "Whether to display pagination (indicator dots). Enter \"true\" or \"false\" only.",
@@ -724,7 +832,7 @@
                 {
                     "key": "field_64435675eca90",
                     "label": "Mobile",
-                    "name": "mobile_pagination",
+                    "name": "mobile",
                     "aria-label": "",
                     "type": "true_false",
                     "instructions": "",
@@ -744,7 +852,7 @@
                 {
                     "key": "field_64435684eca91",
                     "label": "Tablet",
-                    "name": "tablet_pagination",
+                    "name": "tablet",
                     "aria-label": "",
                     "type": "true_false",
                     "instructions": "",
@@ -764,7 +872,7 @@
                 {
                     "key": "field_6443568beca92",
                     "label": "Desktop",
-                    "name": "desktop_pagination",
+                    "name": "desktop",
                     "aria-label": "",
                     "type": "true_false",
                     "instructions": "",
@@ -784,32 +892,124 @@
             ]
         },
         {
-            "key": "field_6578df7da94a3",
-            "label": "Custom Pagination",
-            "name": "slider__custom-pagination",
+            "key": "field_65f1034c8c36f",
+            "label": "Custom Settings",
+            "name": "",
             "aria-label": "",
-            "type": "true_false",
-            "instructions": "toggle on\/off to convert pagination to custom: checked = custom; unchecked = default",
+            "type": "accordion",
+            "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_644440cd74fd3",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "message": "Show custom pagination",
-            "default_value": 0,
-            "ui_on_text": "",
-            "ui_off_text": "",
-            "ui": 1
+            "open": 0,
+            "multi_expand": 1,
+            "endpoint": 0
+        },
+        {
+            "key": "field_6578df7da94a3",
+            "label": "Custom Pagination",
+            "name": "slider__custom-pagination",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "Toggle custom pagination on or off per breakpoint",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "sub_fields": [
+                {
+                    "key": "field_65f10b68bec95",
+                    "label": "Mobile",
+                    "name": "sm",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_64435675eca90",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "ui": 1
+                },
+                {
+                    "key": "field_65f10b7fbec96",
+                    "label": "Tablet",
+                    "name": "md",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_64435684eca91",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "ui": 1
+                },
+                {
+                    "key": "field_65f10b92bec97",
+                    "label": "Desktop",
+                    "name": "lg",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6443568beca92",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "ui": 1
+                }
+            ]
         },
         {
             "key": "field_6572535a0cffa",
@@ -1066,5 +1266,5 @@
     "active": false,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1707628609
+    "modified": 1710297123
 }

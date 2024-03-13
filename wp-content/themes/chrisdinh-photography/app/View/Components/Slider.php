@@ -15,6 +15,22 @@ class Slider extends Component {
     public $sliderCustomSettings = [];
     public $sliderAcfJSONData = '';
 
+    // The predefined settings in ACF that can be toggled via the admin. Should be used in the Composer only
+    public $acfSliderSettings = [
+        'type',
+        'rewind',
+        'speed',
+        'width',
+        'height',
+        'perPage',
+        'perMove',
+        'gap',
+        'arrows',
+        'pagination'
+    ];
+
+    // Will contain the classes on which custom pagination will show if any
+    public $customPaginationShowOn = '';
     /**
      * Create the component instance.
      *
@@ -25,20 +41,56 @@ class Slider extends Component {
      * @return void
      */
     public function __construct( $sliderSettingsAcfName, $slideViewTemplatePath, $slideViewTemplateData, $acfPostId = false, $sliderSectionClasses = '' ) {
-        $this->sliderSettingsAcfName = $sliderSettingsAcfName;
-        $this->slideViewTemplatePath = $slideViewTemplatePath;
-        $this->slideViewTemplateData = $slideViewTemplateData;
+        $this->sliderSettingsAcfName = $sliderSettingsAcfName; // ACF name that contains the splider settings
+        $this->slideViewTemplatePath = $slideViewTemplatePath; // The path to the template that will control how each slide looks
+        $this->slideViewTemplateData = $slideViewTemplateData; // The data passed into the view which is then passed to each slide. Should be an array
         $this->acfPostId = $acfPostId;
+
         $this->sliderSectionClasses = $sliderSectionClasses;
         $this->sliderSettings = get_field( $sliderSettingsAcfName, $acfPostId );
 
-        $this->sliderCustomSettings = $this->formatCustomSliderSettings();
+        $this->sliderAcfJSONData = $this->setUpSliderJSONSettings();
+        $this->setCustomPaginationViewSettings( $this->sliderSettings['slider__custom-pagination'] );
     }
 
+    /**
+     * Creates the array necessary for us to set up splideJS settins via JSON
+     */
     private function setUpSliderJSONSettings() {
-        $settingsToIgnore = [
-            'slider__custom-pagination'
+        $mobileSettings = [];
+        $tabletSettings = [];
+        $desktopSettings = [];
+
+        if ( !empty($this->sliderSettings) ) {
+            foreach ($this->sliderSettings as $settingName => $values) {
+                if (in_array($settingName, $this->acfSliderSettings)) {
+                    $mobileSettings[$settingName] = $values['mobile'];
+                    $tabletSettings[$settingName] = $values['tablet'];
+                    $desktopSettings[$settingName] = $values['desktop'];
+                }
+            }
+        }
+
+        $breakpoints = [
+            '768' => $mobileSettings,
+            '1120' => $tabletSettings,
         ];
+
+        $desktopSettings['breakpoints'] = $breakpoints;
+
+        return $desktopSettings;
+    }
+
+    private function setCustomPaginationViewSettings( $customPagination ) {
+        if ( !empty($customPagination) ) {
+            foreach ($customPagination as $breakpoint => $value) {
+                if ($value == true) {
+                    $this->customPaginationShowOn .= " $breakpoint:block ";
+                } else {
+                    $this->customPaginationShowOn .= " $breakpoint:hidden ";
+                }
+            }
+        }
     }
 
     private function formatCustomSliderSettings() {
@@ -51,13 +103,13 @@ class Slider extends Component {
                 foreach ($settings as $pair => $values) {
                     switch ($breakpoint) {
                         case 'mobile':
-                            array_push($mobileSliderSettings, [$values['setting_name'] => $values['value']]);
+                            $mobileSliderSettings[$values['setting_name']] = $values['value'];
                             break;
                         case 'tablet':
-                            array_push($tabletSliderSettings, [$values['setting_name'] => $values['value']]);
+                            $tabletSliderSettings[$values['setting_name']] = $values['value'];
                             break;
                         case 'desktop':
-                            array_push($desktopSliderSettings, [$values['setting_name'] => $values['value']]);
+                            $desktopSliderSettings[$values['setting_name']] = $values['value'];
                             break;
                     }
                 }

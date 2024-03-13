@@ -41,6 +41,9 @@ module.exports = {
   safelist: [
     {
       pattern: /(md\:|lg\:)-(grid-cols-gallery|grid-rows-gallery)/
+    },
+    {
+      pattern: /(sm\:|md\:|lg\:)-(block|hidden)/
     }
   ]
 };

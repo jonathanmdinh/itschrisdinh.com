@@ -1,37 +1,10 @@
-@php
-    $paginationSettings = $sliderSettings['slider__pagination'];
-    $paginationValues = [
-        $paginationSettings['mobile_pagination'] ? 'true' : 'false',
-        $paginationSettings['tablet_pagination'] ? 'true' : 'false',
-        $paginationSettings['desktop_pagination'] ? 'true' : 'false',
-    ];
-
-    $arrowSettings = $sliderSettings['slider__arrows'];
-    $arrowValues = [
-        $arrowSettings['mobile_arrows'] ? 'true' : 'false',
-        $arrowSettings['tablet_arrows'] ? 'true' : 'false',
-        $arrowSettings['desktop_arrows'] ? 'true' : 'false',
-    ];
-@endphp
-
 <slider>
     <section
         id="{{ $sliderSettings['slider__id'] }}"
-        class="{{ $sliderSectionClasses }} splider splide"
-        data-type="{{ $sliderSettings['slider__type'] }}"
-        data-speed="{{ implode(',', $sliderSettings['slider__speed'])  }}"
-        data-width="{{ implode(',', $sliderSettings['slider__width']) }}"
-        data-height="{{ implode(',', $sliderSettings['slider__height']) }}"
-        data-per-page="{{ implode(',', $sliderSettings['slider__per-page']) }}"
-        data-per-move="{{ implode(',', $sliderSettings['slider__per-move']) }}"
-        data-gap="{{ implode(',', $sliderSettings['slider__gap']) }}"
-        data-arrows="{{ implode(',', $sliderSettings['slider__arrows']) }}"
-        data-pagination="{{ implode(',', $sliderSettings['slider__pagination'])}}"
-        data-mobile-custom-settings="{{ !empty($sliderCustomSettings['mobile']) ? json_encode($sliderCustomSettings['mobile']) : '' }}"
-        data-tablet-custom-settings="{{ !empty($sliderCustomSettings['tablet']) ? json_encode($sliderCustomSettings['mobile']) : '' }}"
-        data-desktop-custom-settings="{{ !empty($sliderCustomSettings['desktop']) ? json_encode($sliderCustomSettings['desktop']) : '' }}"
+        class="{{ $sliderSettings['slider__classes'] }} splider splide"
+        data-splide="{{ json_encode($sliderAcfJSONData) }}"
         @if ($sliderSettings['slider__custom-pagination'])
-            data-custom-pagination="<?php echo get_field('slider__custom-pagination') ? 'true' : 'false'; ?>"
+            data-custom-pagination="<?= $sliderSettings['slider__custom-pagination'] ? 'true' : 'false'; ?>"
         @endif
         >
         <div class="flex justify-center items-center">
@@ -50,13 +23,12 @@
                     @endforeach
                 </ul>
             </div>
-            <!--handles color of pagination text-->
-            @if ($sliderSettings['slider__custom-pagination'])
-                <div class="splide__pagination text-white"></div>
-            @endif
+
+            <div class="splide__custom-pagination text-center bottom-2 left-0 px-0 py-4 absolute right-0 z-1 text-white {{ $customPaginationShowOn }}"></div>
+            <div class="splide__pagination text-white"></div>
         </div>
+        @if ($sliderSettings['slider__show-camera-effect'])
+            @include('components.camera-effect')
+        @endif
     </section>
 </slider>
-<pre>
-    @dump($sliderCustomSettings)
-</pre>

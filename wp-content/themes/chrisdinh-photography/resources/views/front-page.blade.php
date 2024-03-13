@@ -8,9 +8,10 @@
   @endwhile
 
   @unless ( empty($slides) && empty($sliderSettings) )
-    <x-slider slider-settings-acf-name="homepage__slider-settings" slide-view-template-path="components.homepage-slider-slides" :slide-view-template-data="$slides" slider-section-classes="relative w-screen h-screen"></x-slider>
-    @if ($sliderSettings['slider__show-camera-effect'])
-        @include('components.camera-effect')
-    @endif
+    <x-slider
+        slider-settings-acf-name="homepage__slider-settings"
+        slide-view-template-path="components.homepage-slider-slides"
+        :slide-view-template-data="$slides">
+    </x-slider>
   @endunless
 @endsection

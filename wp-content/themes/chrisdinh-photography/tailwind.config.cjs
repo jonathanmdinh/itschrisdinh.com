@@ -39,11 +39,14 @@ module.exports = {
   },
   plugins: [],
   safelist: [
+    'sm:hidden',
+    'md:hidden',
+    'lg:hidden',
+    'sm:block',
+    'md:block',
+    'lg:block',
     {
       pattern: /(md\:|lg\:)-(grid-cols-gallery|grid-rows-gallery)/
-    },
-    {
-      pattern: /(sm\:|md\:|lg\:)-(block|hidden)/
     }
   ]
 };

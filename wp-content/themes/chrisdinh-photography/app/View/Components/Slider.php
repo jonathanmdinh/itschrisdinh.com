@@ -40,16 +40,16 @@ class Slider extends Component {
      * @param  mixed   $acfPostId - The post ID or WP Post object that can be used to fetch the ACF data for the slider. Defaults to the current post
      * @return void
      */
-    public function __construct( $sliderSettingsAcfName, $slideViewTemplatePath, $slideViewTemplateData, $acfPostId = false, $sliderSectionClasses = '' ) {
+    public function __construct( $sliderSettingsAcfName, $slideViewTemplatePath, $slideViewTemplateData, $acfPostId = false ) {
         $this->sliderSettingsAcfName = $sliderSettingsAcfName; // ACF name that contains the splider settings
         $this->slideViewTemplatePath = $slideViewTemplatePath; // The path to the template that will control how each slide looks
         $this->slideViewTemplateData = $slideViewTemplateData; // The data passed into the view which is then passed to each slide. Should be an array
         $this->acfPostId = $acfPostId;
 
-        $this->sliderSectionClasses = $sliderSectionClasses;
         $this->sliderSettings = get_field( $sliderSettingsAcfName, $acfPostId );
 
         $this->sliderAcfJSONData = $this->setUpSliderJSONSettings();
+        $this->sliderCustomSettings = $this->formatCustomSliderSettings();
         $this->setCustomPaginationViewSettings( $this->sliderSettings['slider__custom-pagination'] );
     }
 
@@ -98,18 +98,40 @@ class Slider extends Component {
         $tabletSliderSettings = [];
         $desktopSliderSettings = [];
 
-        if ( !empty($this->sliderSettings['slider__custom-settings']) ) {
-            foreach ( $this->sliderSettings['slider__custom-settings'] as $breakpoint => $settings ) {
+        foreach ( $this->sliderSettings['slider__custom-settings'] as $breakpoint => $settings ) {
+            if ( !empty($settings) ) {
                 foreach ($settings as $pair => $values) {
+
+                    $settingValue = $values['value'];
+                    $settingName = $values['setting_name'];
+
+                    $intergerTypeCastFields = [
+                        'fixedWidth',
+                        'fixedHeight'
+                    ];
+
+                    $booleanTypeCastFields = [
+                        'isNavigation'
+                    ];
+
+                    // Type cast to prevent issues for the setting
+                    if ( in_array($settingName, $intergerTypeCastFields) ) {
+                        $settingValue = (int) $settingValue;
+                    }
+
+                    if ( in_array($settingName, $booleanTypeCastFields) ) {
+                        $settingValue = (boolean) $settingValue;
+                    }
+
                     switch ($breakpoint) {
                         case 'mobile':
-                            $mobileSliderSettings[$values['setting_name']] = $values['value'];
+                            $mobileSliderSettings[$settingName] = $settingValue;
                             break;
                         case 'tablet':
-                            $tabletSliderSettings[$values['setting_name']] = $values['value'];
+                            $tabletSliderSettings[$settingName] = $settingValue;
                             break;
                         case 'desktop':
-                            $desktopSliderSettings[$values['setting_name']] = $values['value'];
+                            $desktopSliderSettings[$settingName] = $settingValue;
                             break;
                     }
                 }

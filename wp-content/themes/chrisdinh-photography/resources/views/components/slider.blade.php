@@ -6,6 +6,9 @@
         @if ($sliderSettings['slider__custom-pagination'])
             data-custom-pagination="<?= $sliderSettings['slider__custom-pagination'] ? 'true' : 'false'; ?>"
         @endif
+        data-mobile-custom-settings="{{ json_encode($sliderCustomSettings['mobile']) }}"
+        data-tablet-custom-settings="{{ json_encode($sliderCustomSettings['tablet']) }}"
+        data-desktop-custom-settings="{{ json_encode($sliderCustomSettings['desktop']) }}"
         >
         <div class="flex justify-center items-center">
             <div class="splide__arrows z-10">

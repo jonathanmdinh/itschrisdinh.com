@@ -1,0 +1,18 @@
+body.gallery {
+  #main-slider .splide__slide {
+    display: flex;
+    align-items: center;
+    flex-flow: column wrap;
+    justify-content: center;
+  }
+
+  #thumbnail-slider {
+    .splide__slide {
+      opacity: 0.6;
+    }
+
+    .splide__slide.is-active {
+      opacity: 1;
+    }
+  }
+}

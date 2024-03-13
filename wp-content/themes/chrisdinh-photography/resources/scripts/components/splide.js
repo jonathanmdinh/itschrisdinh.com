@@ -1,11 +1,15 @@
 import { Splide, SplidePagination } from "@splidejs/splide";
+import { handleGalleryPopup } from "@scripts/util/galleryPopup";
 
 const initiateSplideSlider = ( selector = '.splide' ) => {
   const sliders = document.querySelectorAll(`${selector}`);
-  if ( sliders.length > 0 ) {
+
+  // The gallery will have a thumbnail slider that needs to be syncd. do not call this by default on that page
+  if ( sliders.length > 0 && !document.body.classList.contains('gallery') ) {
     sliders.forEach( slider => {
 
-      const sliderSettingsJSON = slider.dataset.splide ? JSON.parse(slider.dataset.splide) : {};
+      let sliderSettingsJSON = slider.dataset.splide ? JSON.parse(slider.dataset.splide) : {};
+      sliderSettingsJSON = handleMergingCustomSettings(slider, sliderSettingsJSON);
       const sliderId = slider.id;
 
       if ( sliderId && Object.keys(sliderSettingsJSON).length > 0 ) {
@@ -16,76 +20,60 @@ const initiateSplideSlider = ( selector = '.splide' ) => {
         }
       }
     });
+  } else {
+
+    const mainSlider = document.querySelector('#main-slider');
+    let mainSliderSettings = mainSlider.dataset.splide ? JSON.parse(mainSlider.dataset.splide) : {};
+    mainSliderSettings = handleMergingCustomSettings(mainSlider, mainSliderSettings);
+
+    const thumbnailSlider = document.querySelector('#thumbnail-slider');
+    let thumbnailSliderSettings = thumbnailSlider.dataset.splide ? JSON.parse(thumbnailSlider.dataset.splide) : {};
+    thumbnailSliderSettings = handleMergingCustomSettings(thumbnailSlider, thumbnailSliderSettings);
+
+    const main = new Splide(`#${mainSlider.id}`, mainSliderSettings);
+    const thumbnail = new Splide(`#${thumbnailSlider.id}`, thumbnailSliderSettings);
+
+    main.sync( thumbnail );
+    main.mount();
+    thumbnail.mount();
+
+    const allGalleryImages = document.querySelectorAll('.gallery-item__image img');
+
+    if ( allGalleryImages ) {
+      allGalleryImages.forEach(image => {
+        image.addEventListener('click', (e) => {
+          handleGalleryPopup(thumbnail, image.dataset.index);
+        });
+      })
+    }
   }
 };
 
-const setSliderSettings = ( slider ) => {
-  const paginationSettings = slider.dataset.pagination.split(',');
-  const mobilePagination = paginationSettings[0] === 'true';
-  const tabletPagination = paginationSettings[1] === 'true';
-  const desktopPagination = paginationSettings[2] === 'true';
+/**
+ * Combines both the default admin settings with any custom settings
+ *
+ * @param {HTMLElement} slider The slider which we'll use to pull data attributes from
+ * @param {Object} sliderSettingsJSON The object containing the slider settings set via the admin
+ * @returns {Object} The combined default settings + any custom settings
+ */
+const handleMergingCustomSettings = (slider, sliderSettingsJSON) => {
+  const mobileCustomSettings = slider.dataset.mobileCustomSettings ? JSON.parse(slider.dataset.mobileCustomSettings) : {};
+  const tabletCustomSettings = slider.dataset.tabletCustomSettings ? JSON.parse(slider.dataset.tabletCustomSettings) : {};
+  const desktopCustomSettings = slider.dataset.desktopCustomSettings ? JSON.parse(slider.dataset.desktopCustomSettings) : {};
 
-  const arrowSettings = slider.dataset.arrows.split(',');
-  const mobileArrows = arrowSettings[0] === 'true';
-  const tabletArrows = arrowSettings[1] === 'true';
-  const desktopArrows = arrowSettings[2] === 'true';
-
-  const mobileCustomSettings = slider.dataset.mobileCustomSettings;
-  const tabletCustomSettings = slider.dataset.tabletCustomSettings;
-  const desktopCustomSettings = slider.dataset.desktopCustomSettings;
-
-  console.log(JSON.parse(mobileCustomSettings), JSON.parse(tabletCustomSettings), JSON.parse(desktopCustomSettings));
-
-  const sliderOptions = {
-    rewind: true, //allow the carousel to infinitely loop.
-    pagination: desktopPagination,
-    arrows: desktopArrows,
-    breakpoints: {
-      //mobile
-      768: {
-        arrows: mobileArrows,
-        pagination: mobilePagination
-      },
-      //tablet
-      1120: {
-        arrows: tabletArrows,
-        pagination: tabletPagination
-      }
-    }
-  };
-
-  // sliderOptions.breakpoints['768'] = {...sliderOptions.breakpoints['768'], ...mobileCustomSettings.reduce( (obj, item) => (obj[item.key] = item.value, obj))};
-  console.log(sliderOptions);
-  console.log( JSON.parse(mobileCustomSettings).reduce( (obj, item) => (obj[item.key] = item.value, obj), {}) )
-
-  sliderOptions.type = slider.dataset.sliderType ? slider.dataset.sliderType : 'loop'; // Set loop as default slider type if none is provided
-  sliderOptions.mediaQuery = 'min'; // Set mediaQuery to min so our breakpoints are mobile first
-
-  const sliderDataset = slider.dataset;
-
-  for ( let attribute in sliderDataset ) {
-    if ( attribute === 'type' ) {
-      sliderOptions.type = sliderDataset[attribute];
-    } else {
-
-      if ( sliderDataset[attribute] !== ',,' ) {
-
-        const settingsArray = sliderDataset[attribute].split(',');
-
-        if ( settingsArray.length === 3 ) {
-          // Settings with breakpoint capabilities
-          sliderOptions[attribute] = settingsArray[0];
-          sliderOptions.breakpoints['768'][attribute] = settingsArray[1];
-          sliderOptions.breakpoints['1120'][attribute] = settingsArray[2];
-        } else {
-          // Settings without breakpoint capabilities
-          sliderOptions[attribute] = sliderDataset[attribute];
-        }
-      }
-    }
+  if ( Object.keys(mobileCustomSettings).length > 0 ) {
+    sliderSettingsJSON.breakpoints['768'] = {...sliderSettingsJSON.breakpoints['768'], ...mobileCustomSettings};
   }
 
-  return sliderOptions;
+  if ( Object.keys(tabletCustomSettings).length > 0 ) {
+    sliderSettingsJSON.breakpoints['1120'] = {...sliderSettingsJSON.breakpoints['1120'], ...tabletCustomSettings};
+  }
+
+  if ( Object.keys(desktopCustomSettings).length > 0 ) {
+    sliderSettingsJSON = {...sliderSettingsJSON, ...desktopCustomSettings};
+  }
+
+  return sliderSettingsJSON;
 }
 
 

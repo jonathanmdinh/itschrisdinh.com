@@ -1246,6 +1246,24 @@
                     ]
                 }
             ]
+        },
+        {
+            "key": "field_65f11356ce9a2",
+            "label": "Custom Settings Endpoint",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 1
         }
     ],
     "location": [
@@ -1266,5 +1284,5 @@
     "active": false,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1710297123
+    "modified": 1710297955
 }

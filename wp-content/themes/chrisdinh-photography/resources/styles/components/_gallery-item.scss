@@ -1,0 +1,7 @@
+.gallery-item__image {
+  &:hover {
+    img {
+      transform: scale(1.05);
+    }
+  }
+}

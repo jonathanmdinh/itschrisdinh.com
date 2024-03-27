@@ -1,9 +1,18 @@
 $main-breakpoint: '1120px';
 
+body {
+  background-color: #000;
+
+  &.popup-active {
+    overflow-y: hidden;
+  }
+}
+
 h1 {
   font-family: 'adobe-handwriting-ernie', 'Helvetica-Neue', sans-serif;
   font-size: 28px;
   line-height: 1.5;
+  color: #fff;
 
   @include min-width($main-breakpoint) {
     font-size: 38px;
@@ -23,6 +32,7 @@ button {
   font-family: 'neue-haas-grotesk-display', 'Helvetica-Neue', sans-serif;
   font-size: 18px;
   line-height: 1;
+  color: #fff;
 
   @include min-width ($main-breakpoint) {
     font-size: 24px;

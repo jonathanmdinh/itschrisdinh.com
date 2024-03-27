@@ -1,38 +1,15 @@
-@php
-    $paginationSettings = $sliderSettings['slider__pagination'];
-    $paginationValues = [
-        $paginationSettings['mobile_pagination'] ? 'true' : 'false',
-        $paginationSettings['tablet_pagination'] ? 'true' : 'false',
-        $paginationSettings['desktop_pagination'] ? 'true' : 'false',
-    ];
-
-    $arrowSettings = $sliderSettings['slider__arrows'];
-    $arrowValues = [
-        $arrowSettings['mobile_arrows'] ? 'true' : 'false',
-        $arrowSettings['tablet_arrows'] ? 'true' : 'false',
-        $arrowSettings['desktop_arrows'] ? 'true' : 'false',
-    ];
-@endphp
-
-<!--front-end view of the slider component-->
-<!--run yarn build/dev before coding to implement new tailwind code-->
-@unless ( empty($data) )
-    <!--parent container of the slider -->
-    <!--uses splidejs.com, read the documentation-->
-    <section id="{{ $sliderSettings['slider__id'] }}"  class="relative w-screen h-screen splider splide"
-        data-type="{{ $sliderSettings['slider__type'] }}"
-        data-speed="{{ implode(',', $sliderSettings['slider__speed'])  }}"
-        data-width="{{ implode(',', $sliderSettings['slider__width']) }}"
-        data-height="{{ implode(',', $sliderSettings['slider__height']) }}"
-        data-per-page="{{ implode(',', $sliderSettings['slider__per-page']) }}"
-        data-per-move="{{ implode(',', $sliderSettings['slider__per-move']) }}"
-        data-gap="{{ implode(',', $sliderSettings['slider__gap']) }}"
-        data-arrows="{{ implode(',', $sliderSettings['slider__arrows']) }}"
-        data-pagination="{{ implode(',', $sliderSettings['slider__pagination'])}}"
+<slider>
+    <section
+        id="{{ $sliderSettings['slider__id'] }}"
+        class="{{ $sliderSettings['slider__classes'] }} splider splide"
+        data-splide="{{ json_encode($sliderAcfJSONData) }}"
         @if ($sliderSettings['slider__custom-pagination'])
-            data-custom-pagination="<?php echo get_field('slider__custom-pagination') ? 'true' : 'false'; ?>"
+            data-custom-pagination="<?= $sliderSettings['slider__custom-pagination'] ? 'true' : 'false'; ?>"
         @endif
-    >
+        data-mobile-custom-settings="{{ json_encode($sliderCustomSettings['mobile']) }}"
+        data-tablet-custom-settings="{{ json_encode($sliderCustomSettings['tablet']) }}"
+        data-desktop-custom-settings="{{ json_encode($sliderCustomSettings['desktop']) }}"
+        >
         <div class="flex justify-center items-center">
             <div class="splide__arrows z-10">
                 <button class="splide__arrow splide__arrow--prev !bg-transparent z-10">
@@ -43,23 +20,18 @@
                 </button>
             </div>
             <div class="splide__track justify-center items-center">
-                <ul class="splide__list ">
-                    @foreach ($data as $item)
-                    <!--figure out how to get the 4th image to fill the container -->
-                        <li class="splide__slide relative flex items-center justify-center">
-                            <picture class="block relative w-full h-auto">
-                                <source srcset="{{ wp_get_attachment_image_srcset( $item['homepage__slide-image-desktop']['ID'] ) }}" media="(min-width: 50em)">
-                                <source srcset="{{ wp_get_attachment_image_srcset( $item['homepage__slide-image-mobile']['ID'] ) }}">
-                                <img alt="{{ $item['homepage__slide-image-mobile']['alt'] }}" class="w-full h-full object-cover object-center">
-                            </picture>
-                        </li>
+                <ul class="splide__list">
+                    @foreach ($slideViewTemplateData as $item)
+                        @include($slideViewTemplatePath, ['data' => $item])
                     @endforeach
                 </ul>
             </div>
-            <!--handles color of pagination text-->
-            @if ($sliderSettings['slider__custom-pagination'])
-                <div class="splide__pagination text-white"></div>
-            @endif
+
+            <div class="splide__custom-pagination text-center bottom-2 left-0 px-0 py-4 absolute right-0 z-1 text-white {{ $customPaginationShowOn }}"></div>
+            <div class="splide__pagination text-white"></div>
         </div>
+        @if ($sliderSettings['slider__show-camera-effect'])
+            @include('components.camera-effect')
+        @endif
     </section>
-@endunless
+</slider>

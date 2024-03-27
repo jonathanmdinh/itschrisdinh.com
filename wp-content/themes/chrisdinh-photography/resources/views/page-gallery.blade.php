@@ -25,13 +25,13 @@
     @include('components.back-to-top')
 
     <div class="gallery-popup fixed h-screen w-screen bg-black opacity-0 flex justify-center items-center top-0 left-0 right-0 bottom-0 -z-1 transition-all duration-300">
-        <button class="gallery-popup__close absolute top-10 right-10" title="Close popup">
+        <button class="gallery-popup__close absolute top-10 right-[20px]" title="Close popup">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 stroke-white">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
             </svg>
         </button>
-        <div class="max-w-[90%] mx-auto flex flex-col md:flex-row flex-wrap justify-center items-center gap-y-5 md:gap-y-0">
-            <div class="order-2 w-full md:w-1/5 md:order-1">
+        <div class="max-w-[90%] mx-auto flex flex-col md:flex-row flex-wrap justify-between items-center gap-y-5 md:gap-y-0">
+            <div class="order-2 w-full md:w-[100px] md:order-1">
                 <x-slider
                     slider-settings-acf-name="gallery__thumbnail-slider-settings"
                     slide-view-template-path="components.gallery-thumbnail-slide"
@@ -39,7 +39,7 @@
                     >
                 </x-slider>
             </div>
-            <div class="order-1 w-full md:w-4/5 md:order-2">
+            <div class="order-1 w-full md:w-[calc(100%-200px)] md:order-2">
                 <x-slider
                     slider-settings-acf-name="gallery__main-slider-settings"
                     slide-view-template-path="components.gallery-main-slide"

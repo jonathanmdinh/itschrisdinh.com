@@ -1,6 +1,7 @@
 // Collection of functions that help the gallery popup
 
 export const handleGalleryPopup = (splide, index) => {
+  // TODO: figure out why this shit isnt working
   // const slides = splide.Components.Slides;
   // console.log(splide);
   // splide.Components.Controller.go(index);
@@ -14,6 +15,9 @@ export const handleGalleryPopup = (splide, index) => {
     galleryPopup.classList.remove('opacity-0');
     galleryPopup.classList.add('z-[40]');
     galleryPopup.classList.remove('-z-1');
+
+    // Prevent scrolling
+    document.body.classList.add('popup-active');
   }
 };
 
@@ -29,6 +33,9 @@ export const handlePopupClose = () => {
       galleryPopup.classList.add('opacity-0');
       galleryPopup.classList.remove('z-[40]');
       galleryPopup.classList.add('-z-1');
+
+      // allow scrolling
+      document.body.classList.remove('popup-active');
     })
   }
 }

@@ -1179,6 +1179,11 @@
           "name": "Ui-monospace",
           "slug": "mono",
           "fontFamily": "ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,\"Liberation Mono\",\"Courier New\",monospace"
+        },
+        {
+          "name": "Adobe-handwriting-ernie",
+          "slug": "logo",
+          "fontFamily": "adobe-handwriting-ernie,Helvetica-Neue,sans-serif"
         }
       ],
       "fontSizes": [

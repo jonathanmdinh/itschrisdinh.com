@@ -1,5 +1,6 @@
 import domReady from '@roots/sage/client/dom-ready';
 import initiateSplideSlider from './components/splide.js';
+import initiateNavigation  from './components/navigation.js';
 
 /**
  * Application entrypoint
@@ -7,6 +8,7 @@ import initiateSplideSlider from './components/splide.js';
 domReady(async () => {
   // ...
   initiateSplideSlider();
+  initiateNavigation();
 });
 
 /**

@@ -22,30 +22,34 @@
                         <nav class="w-full flex flex-col justify-end items-end text-white lg:w-1/2 lg:justify-start lg:items-start lg:pl-48 z-20" aria-label="Primary Navigation">
                             <ul class="flex flex-col w-full items-end pr-6 lg:items-start">
                                 @foreach ($menuItems as $menuItem)
+                                    @php
+                                        $shouldOpenInNewTab = get_post_meta($menuItem->ID, '_menu_item_target', true);
+                                    @endphp
+
                                     <li class="nav-item mb-6" data-image="{{ $menuItem->navigation_image }}">
-                                        <a href="{{ $menuItem->url }}"
-                                        class="inline-block text-5xl lg:text-5xl transition-transform duration-300 ease-in-out hover:scale-110"
-                                        @if ($menuItem->link_target === '_blank') target="_blank" rel="noopener noreferrer" @endif>
+                                        <a href="{{ $menuItem->url }}" class="inline-block text-5xl lg:text-5xl transition-transform duration-300 ease-in-out hover:scale-110"
+                                        @if($shouldOpenInNewTab === '_blank') target="_blank" @endif>
                                             {{ $menuItem->title }}
                                         </a>
                                     </li>
                                 @endforeach
+
                             </ul>
                         </nav>
 
                         <div class="w-full flex flex-col justify-start items-start pl-6 pt-24 text-white whitespace-nowrap lg:w-1/2 lg:pr-48 z-20">
                             @if (!empty($contactInformation))
-                                @php
-                                    $instagramGroup = $contactInformation['contact__instagram-link'] ?? null;
-                                    $instagramUrl = $instagramGroup['instagram_url'] ?? 'https://www.instagram.com/itschrisdinh/';
-                                    $instagramTarget = $instagramGroup['link_target'] ?? '_self';
-                                @endphp
+                            @php
+                                $instagramLink = $contactInformation['contact__instagram-link'] ?? null;
+                            @endphp
 
-                                @if (!empty($instagramUrl))
-                                    <a href="{{ $instagramUrl }}" class="text-2xl md:text-4xl transition-transform duration-300 ease-in-out hover:scale-110" target= $instagramURL rel="noopener noreferrer">
-                                        {{ $contactInformation['contact__instagram-handle'] }}
-                                    </a>
-                                @endif
+                            @if($instagramLink)
+                                <a href="{{ $instagramLink['url'] }}" class="text-2xl md:text-4xl transition-transform duration-300 ease-in-out hover:scale-110"
+                                target="{{ $instagramLink['target'] }}" rel="noopener noreferrer">
+                                    {{ $instagramLink['title'] }}
+                                </a>
+                            @endif
+
 
                                 <!-- Display the phone number -->
                                 @if (!empty($contactInformation['contact__phone-number']))

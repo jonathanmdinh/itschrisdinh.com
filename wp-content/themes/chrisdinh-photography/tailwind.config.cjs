@@ -21,11 +21,35 @@ module.exports = {
         lg: '1030px',
         xl: '1440px'
       },
+      gridTemplateColumns: {
+        'gallery': 'repeat(4, 300px)'
+      },
+      gridTemplateRows: {
+        'gallery': 'repeat(4, 300px)'
+      },
       padding: {},
       blur: {
         xs: '2px'
+      },
+      zIndex: {
+        1: 1
       }
     },
+    fontFamily: {
+      handwritingErnie: ['adobe-handwriting-ernie', 'Helvetica-Neue', 'sans-serif'],
+      neueHaas: ['neue-haas-grotesk-display', 'Helvetica-Neue', 'sans-serif']
+    }
   },
   plugins: [],
+  safelist: [
+    'sm:hidden',
+    'md:hidden',
+    'lg:hidden',
+    'sm:block',
+    'md:block',
+    'lg:block',
+    {
+      pattern: /(md\:|lg\:)-(grid-cols-gallery|grid-rows-gallery)/
+    }
+  ]
 };

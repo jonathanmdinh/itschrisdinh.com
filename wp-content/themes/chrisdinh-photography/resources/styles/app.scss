@@ -7,5 +7,10 @@
 
 /* Sass imports */
 @import 'mixins/media.scss';
+
+@import 'components/gallery-item';
+@import 'components/gallery-collections';
+@import 'components/slider';
+
 @import 'modules/global.scss';
 @import 'modules/header.scss';

@@ -1,7 +1,3 @@
-<!--front-end view of the homepage-->
-<!--read sage doc on blade-->
-<!--use tailwind classes in html of front-page.blade.php / slider.blade.php-->
-
 @extends('layouts.app')
 
 @section('content')
@@ -10,9 +6,10 @@
   @endwhile
 
   @unless ( empty($slides) && empty($sliderSettings) )
-    @include('components.slider', ['data' => $slides, 'settings' => $sliderSettings])
-    @if ($sliderSettings['slider__show-camera-effect'])
-        @include('components.camera-effect')
-    @endif
+    <x-slider
+        slider-settings-acf-name="homepage__slider-settings"
+        slide-view-template-path="components.homepage-slider-slides"
+        :slide-view-template-data="$slides">
+    </x-slider>
   @endunless
 @endsection

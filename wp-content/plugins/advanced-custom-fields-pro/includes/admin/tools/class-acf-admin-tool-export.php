@@ -38,7 +38,6 @@ if ( ! class_exists( 'ACF_Admin_Tool_Export' ) ) :
 			if ( $this->is_active() ) {
 				$this->title .= ' - ' . __( 'Generate PHP', 'acf' );
 			}
-
 		}
 
 
@@ -61,16 +60,12 @@ if ( ! class_exists( 'ACF_Admin_Tool_Export' ) ) :
 
 			// download
 			if ( $action === 'download' ) {
-
 				$this->submit_download();
 
 				// generate
 			} elseif ( $action === 'generate' ) {
-
 				$this->submit_generate();
-
 			}
-
 		}
 
 
@@ -103,9 +98,8 @@ if ( ! class_exists( 'ACF_Admin_Tool_Export' ) ) :
 			header( 'Content-Type: application/json; charset=utf-8' );
 
 			// return
-			echo acf_json_encode( $json );
+			echo acf_json_encode( $json ) . "\r\n";
 			die;
-
 		}
 
 
@@ -137,7 +131,6 @@ if ( ! class_exists( 'ACF_Admin_Tool_Export' ) ) :
 			// redirect
 			wp_redirect( $url );
 			exit;
-
 		}
 
 
@@ -168,7 +161,6 @@ if ( ! class_exists( 'ACF_Admin_Tool_Export' ) ) :
 					acf_add_admin_notice( $text, 'success' );
 				}
 			}
-
 		}
 
 
@@ -188,16 +180,12 @@ if ( ! class_exists( 'ACF_Admin_Tool_Export' ) ) :
 
 			// single (generate PHP)
 			if ( $this->is_active() ) {
-
 				$this->html_single();
 
 				// archive
 			} else {
-
 				$this->html_archive();
-
 			}
-
 		}
 
 
@@ -283,6 +271,28 @@ if ( ! class_exists( 'ACF_Admin_Tool_Export' ) ) :
 					)
 				);
 			}
+
+			$choices       = array();
+			$selected      = $this->get_selected_keys();
+			$options_pages = acf_get_internal_post_type_posts( 'acf-ui-options-page' );
+
+			if ( $options_pages ) {
+				foreach ( $options_pages as $options_page ) {
+					$choices[ $options_page['key'] ] = esc_html( $options_page['title'] );
+				}
+
+				acf_render_field_wrap(
+					array(
+						'label'   => __( 'Select Options Pages', 'acf' ),
+						'type'    => 'checkbox',
+						'name'    => 'ui_options_page_keys',
+						'prefix'  => false,
+						'value'   => $selected,
+						'toggle'  => true,
+						'choices' => $choices,
+					)
+				);
+			}
 		}
 
 		/**
@@ -339,7 +349,6 @@ if ( ! class_exists( 'ACF_Admin_Tool_Export' ) ) :
 			</div>
 		</div>
 			<?php
-
 		}
 
 
@@ -372,7 +381,6 @@ if ( ! class_exists( 'ACF_Admin_Tool_Export' ) ) :
 			</p>
 		</div>
 			<?php
-
 		}
 
 		/**
@@ -415,13 +423,47 @@ if ( ! class_exists( 'ACF_Admin_Tool_Export' ) ) :
 			// Prevent default translation and fake __() within string.
 			acf_update_setting( 'l10n_var_export', true );
 
-			$json = $this->get_selected();
+			$json      = $this->get_selected();
+			$to_export = array();
 
-			echo '<textarea id="acf-export-textarea" readonly="true">';
-
+			// Sort by ACF post type first so we can wrap them in related functions.
 			foreach ( $json as $post ) {
 				$post_type = acf_determine_internal_post_type( $post['key'] );
-				echo acf_export_internal_post_type_as_php( $post, $post_type );
+
+				if ( $post_type ) {
+					$to_export[ $post_type ][] = $post;
+				}
+			}
+
+			echo '<textarea id="acf-export-textarea" readonly="readonly">';
+
+			foreach ( $to_export as $post_type => $posts ) {
+				if ( 'acf-field-group' === $post_type ) {
+					echo "add_action( 'acf/include_fields', function() {\r\n";
+					echo "\tif ( ! function_exists( 'acf_add_local_field_group' ) ) {\r\n\t\treturn;\r\n\t}\r\n\r\n";
+				} elseif ( 'acf-post-type' === $post_type || 'acf-taxonomy' === $post_type ) {
+					echo "add_action( 'init', function() {\r\n";
+				} elseif ( 'acf-ui-options-page' === $post_type ) {
+					echo "add_action( 'acf/init', function() {\r\n";
+				}
+
+				$count = 0;
+				foreach ( $posts as $post ) {
+					if ( $count !== 0 ) {
+						echo "\r\n";
+					}
+
+					echo "\t" . acf_export_internal_post_type_as_php( $post, $post_type ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- esc_textarea() used earlier.
+					++$count;
+				}
+
+				if ( in_array( $post_type, array( 'acf-post-type', 'acf-taxonomy', 'acf-field-group', 'acf-ui-options-page' ), true ) ) {
+					echo "} );\r\n\r\n";
+				}
+
+				if ( 'acf-post-type' === $post_type ) {
+					echo acf_export_enter_title_here( $posts ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- esc_textarea() used earlier.
+				}
 			}
 
 			echo '</textarea>';
@@ -473,7 +515,7 @@ if ( ! class_exists( 'ACF_Admin_Tool_Export' ) ) :
 		 * @return array|bool
 		 */
 		public function get_selected_keys() {
-			$key_names = array( 'keys', 'post_type_keys', 'taxonomy_keys' );
+			$key_names = array( 'keys', 'taxonomy_keys', 'post_type_keys', 'ui_options_page_keys' );
 			$all_keys  = array();
 
 			foreach ( $key_names as $key_name ) {
@@ -527,12 +569,10 @@ if ( ! class_exists( 'ACF_Admin_Tool_Export' ) ) :
 
 			return $json;
 		}
-
 	}
 
 	// initialize
 	acf_register_admin_tool( 'ACF_Admin_Tool_Export' );
-
 endif; // class_exists check
 
 ?>

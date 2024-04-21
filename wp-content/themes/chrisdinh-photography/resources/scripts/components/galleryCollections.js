@@ -18,6 +18,15 @@ const handleGalleryCollectionFilterClick = () => {
         termId
       };
 
+      galleryCollections.forEach(filter => {
+        if ( filter.classList.contains('gallery-collections__collection--active') ) {
+          filter.classList.remove('gallery-collections__collection--active');
+          filter.classList.remove('border-b');
+        }
+      });
+
+      filter.classList.add('gallery-collections__collection--active');
+
       sendRequest(`${window.location.origin}/wp-admin/admin-ajax.php?action=handle_filtering_gallery`, {
         headers: {
           'Content-Type': 'application/json'

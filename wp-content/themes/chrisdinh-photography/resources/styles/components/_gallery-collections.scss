@@ -1,6 +1,6 @@
 .gallery-collections__collection {
   &--active {
-    @apply border-b-grey;
+    @apply border-b border-b-grey;
   }
 
   &:not(:last-of-type) {

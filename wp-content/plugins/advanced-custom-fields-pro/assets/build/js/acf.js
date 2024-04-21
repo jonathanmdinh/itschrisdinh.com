@@ -1345,15 +1345,12 @@
     initialize: function () {
       const $notices = $('.acf-admin-notice');
       $notices.each(function () {
-        // Move to avoid WP flicker.
-        if ($(this).length) {
-          $('h1:first').after($(this));
-        }
         if ($(this).data('persisted')) {
           let dismissed = acf.getPreference('dismissed-notices');
           if (dismissed && typeof dismissed == 'object' && dismissed.includes($(this).data('persist-id'))) {
             $(this).remove();
           } else {
+            $(this).show();
             $(this).on('click', '.notice-dismiss', function (e) {
               dismissed = acf.getPreference('dismissed-notices');
               if (!dismissed || typeof dismissed != 'object') {
@@ -3193,6 +3190,18 @@
     $el2.removeClass('acf-clone');
     $el2.find('.ui-sortable').removeClass('ui-sortable');
 
+    // remove any initialised select2s prevent the duplicated object stealing the previous select2.
+    $el2.find('[data-select2-id]').removeAttr('data-select2-id');
+    $el2.find('.select2').remove();
+
+    // subfield select2 renames happen after init and contain a duplicated ID. force change those IDs to prevent this.
+    $el2.find('.acf-is-subfields select[data-ui="1"]').each(function () {
+      $(this).prop('id', $(this).prop('id').replace('acf_fields', acf.uniqid('duplicated_') + '_acf_fields'));
+    });
+
+    // remove tab wrapper to ensure proper init
+    $el2.find('.acf-field-settings > .acf-tab-wrap').remove();
+
     // after
     // - allow acf to modify DOM
     args.after($el, $el2);
@@ -3952,14 +3961,25 @@
    *
    *  Returns true if the Gutenberg editor is being used.
    *
-   *  @date	14/11/18
    *  @since	5.8.0
    *
-   *  @param	vois
    *  @return	bool
    */
   acf.isGutenberg = function () {
     return !!(window.wp && wp.data && wp.data.select && wp.data.select('core/editor'));
+  };
+
+  /**
+   *  acf.isGutenbergPostEditor
+   *
+   *  Returns true if the Gutenberg post editor is being used.
+   *
+   *  @since	6.2.2
+   *
+   *  @return	bool
+   */
+  acf.isGutenbergPostEditor = function () {
+    return !!(window.wp && wp.data && wp.data.select && wp.data.select('core/edit-post'));
   };
 
   /**
@@ -4231,6 +4251,19 @@
     //$el.on('acfFocus', onFocus);
     $el.on('focus', 'input, select, textarea', onFocus);
     //$el.data('acf.onFocus', true);
+  };
+
+  /**
+   * Disable form submit buttons
+   *
+   * @since 6.2.3
+   *
+   * @param event e
+   * @returns void
+   */
+  acf.disableForm = function (e) {
+    // Disable submit button.
+    if (e.submitter) e.submitter.classList.add('disabled');
   };
 
   /*

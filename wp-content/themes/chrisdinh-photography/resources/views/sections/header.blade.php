@@ -1,4 +1,4 @@
-<header class="banner relative">
+<header class="banner relative header">
     <!-- Brand logo linking to the homepage -->
     <a href="{{ home_url('/') }}" class="brand component font-logo text-3xl md:text-4xl lg:text-5xl text-white absolute top-8 left-10 md:top-20 md:left-24 z-10">
         Chris D.

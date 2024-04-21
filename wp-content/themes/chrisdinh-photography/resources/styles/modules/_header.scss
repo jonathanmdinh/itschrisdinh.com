@@ -3,3 +3,9 @@
     @apply fixed;
   }
 }
+
+body:not(.home) {
+  .header {
+   @apply min-h-[200px];
+  }
+}

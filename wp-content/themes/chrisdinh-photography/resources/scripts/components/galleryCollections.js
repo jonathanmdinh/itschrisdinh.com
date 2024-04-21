@@ -1,4 +1,5 @@
 import sendRequest from "@scripts/util/sendRequest";
+import { reinitializeSplideAfterFiltering, setUpClickEvent } from "./splide.js";
 
 const handleGalleryCollectionFilterClick = () => {
   const galleryCollections = document.querySelectorAll('button.gallery-collections__collection');
@@ -29,12 +30,35 @@ const handleGalleryCollectionFilterClick = () => {
             const galleryImagesContainer = document.querySelector('section.gallery-items');
             const allCurrentGalleryImages = document.querySelectorAll('.gallery-item__image');
             let newImagesHtml = '';
+            let newThumbnailImages = '';
+            let newMainImages = '';
 
             // Create our string of HTML that will be parsed and injected into the DOM after all current gallery items are removed
-            data.forEach(image => {
+            data.forEach((image, index) => {
               newImagesHtml += `<div class="gallery-item__image block overflow-hidden cursor-pointer">
-                    <img src="${image.imageUrl}" alt="${image.imageAlt}" class="relative object-cover block transition-all duration-1000 w-full h-full">
+                    <img data-index="${index}" src="${image.imageUrl}" alt="${image.imageAlt}" class="relative object-cover block transition-all duration-1000 w-full h-full">
                 </div>`;
+
+              newThumbnailImages += `<li class="splide__slide">
+                  <picture class="max-w-[100px] max-h-auto">
+                      <img src="${image.imageUrl}" alt="${image.imageAlt}" class="w-full h-full object-cover">
+                  </picture>
+              </li>`;
+
+              newMainImages += `<li class="splide__slide">
+                  <div class="lg:max-h-[90vh] flex flex-col justify-center items-center">
+                      <picture class="w-full h-auto">
+                          <img
+                              src="${image.imageUrl}"
+                              alt="${image.imageAlt}"
+                              class="relative w-full h-full object-cover md:object-fill md:h-auto md:max-w-[90%] mx-auto"
+                              >
+                      </picture>
+                      <div class="gallery-main-slider__meta-data pt-5">
+                        <p class="gallery-main-slider__description text-white text-center">${image.excerpt ? image.excerpt : ''}</p>
+                      </div>
+                  </div>
+              </li>`;
             });
 
             // Dont show the transition of images by activating the overlay
@@ -52,6 +76,10 @@ const handleGalleryCollectionFilterClick = () => {
             if ( galleryItemsOverlay ) {
               galleryItemsOverlay.classList.remove('gallery-items__overlay--active');
             }
+
+            setUpClickEvent(galleryImagesContainer.querySelectorAll('.gallery-item__image img'));
+
+            reinitializeSplideAfterFiltering(newMainImages, newThumbnailImages);
           }
 
         })

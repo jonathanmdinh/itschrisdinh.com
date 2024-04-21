@@ -25,7 +25,7 @@ module.exports = {
         'gallery': 'repeat(4, 300px)'
       },
       gridTemplateRows: {
-        'gallery': 'repeat(4, 300px)'
+        'gallery': 'repeat(auto-fill, 300px)'
       },
       padding: {},
       blur: {
@@ -48,8 +48,5 @@ module.exports = {
     'sm:block',
     'md:block',
     'lg:block',
-    {
-      pattern: /(md\:|lg\:)-(grid-cols-gallery|grid-rows-gallery)/
-    }
   ]
 };

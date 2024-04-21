@@ -1,5 +1,5 @@
 import domReady from '@roots/sage/client/dom-ready';
-import initiateSplideSlider from './components/splide.js';
+import { initiateSplideSlider } from './components/splide.js';
 import initiateNavigation  from './components/navigation.js';
 import handleGalleryCollectionFilterClick from './components/galleryCollections.js';
 import galleryBackToTopButton from './components/galleryBackToTopButton.js';

@@ -50,7 +50,8 @@ class Ajax {
                     foreach ( $posts as $post ) {
                         array_push($returnData, [
                             'imageUrl' => get_the_post_thumbnail_url($post->ID, 'full'),
-                            'imageAlt' => get_post_meta($post->ID, '_wp_attachment_image_alt', TRUE)
+                            'imageAlt' => get_post_meta($post->ID, '_wp_attachment_image_alt', TRUE),
+                            'excerpt' => get_the_excerpt($post->ID)
                         ]);
                     }
                 }

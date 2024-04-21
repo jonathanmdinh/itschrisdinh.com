@@ -1,13 +1,6 @@
 // Collection of functions that help the gallery popup
 
-export const handleGalleryPopup = (splide, index) => {
-  // TODO: figure out why this shit isnt working
-  // const slides = splide.Components.Slides;
-  // console.log(splide);
-  // splide.Components.Controller.go(index);
-  // splide.jump(index);
-  // splide.Components.Move.jump(index);
-
+export const handleGalleryPopup = () => {
   const galleryPopup = document.querySelector('.gallery-popup');
 
   if ( galleryPopup ) {

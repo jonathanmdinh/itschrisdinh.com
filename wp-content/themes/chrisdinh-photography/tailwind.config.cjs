@@ -16,7 +16,8 @@ module.exports = {
         sm: '320px',
         md: '768px',
         lg: '1024px',
-        xl: '1440px'
+        xl: '1440px',
+        xxl: '1720px'
       },
       gridTemplateColumns: {
         'gallery': 'repeat(4, 300px)'

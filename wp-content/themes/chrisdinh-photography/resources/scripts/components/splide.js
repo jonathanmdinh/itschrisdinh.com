@@ -39,8 +39,7 @@ export const setUpClickEvent = (galleryImages) => {
     galleryImages.forEach(image => {
       image.addEventListener('click', (e) => {
 
-        // thumbnail.go(image.dataset.index);
-        window.sliders.thumbnail.go(image.dataset.index);
+        window.sliders.thumbnail.go(parseInt(image.dataset.index));
 
         handleGalleryPopup();
       });
@@ -92,6 +91,24 @@ export const initializeMainAndThumbnailSliders = () => {
   mainSlider.sync( thumbnailSlider );
   mainSlider.mount();
   thumbnailSlider.mount();
+
+  // mainSlider.Components
+  mainSlider.Components.Slides.forEach(slide => {
+    const image = slide.slide.querySelector('.gallery-main-slide');
+
+    if ( image ) {
+      const width = image.dataset.width;
+      const height = image.dataset.height;
+
+      if ( width > height ) {
+        image.style.maxWidth = `${width}px`;
+        image.classList.add('gallery-main-slide--16-9');
+      } else {
+        image.style.maxHeight = `${width}px`;
+        image.classList.add('gallery-main-slide--9-16');
+      }
+    }
+  });
 
   // Set our sliders in the window
   window.sliders = {

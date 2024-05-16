@@ -31,4 +31,16 @@ export const handlePopupClose = () => {
       document.body.classList.remove('popup-active');
     })
   }
+
+  document.addEventListener('click', (e) => {
+    if ( e.target.classList.contains('gallery-popup') ) {
+      galleryPopup.classList.remove('opacity-100');
+      galleryPopup.classList.add('opacity-0');
+      galleryPopup.classList.remove('z-[40]');
+      galleryPopup.classList.add('-z-1');
+
+      // allow scrolling
+      document.body.classList.remove('popup-active');
+    }
+  });
 }

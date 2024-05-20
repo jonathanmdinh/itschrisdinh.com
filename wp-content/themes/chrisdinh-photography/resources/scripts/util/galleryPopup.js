@@ -24,7 +24,7 @@ export const handlePopupClose = () => {
 
       galleryPopup.classList.remove('opacity-100');
       galleryPopup.classList.add('opacity-0');
-      galleryPopup.classList.remove('z-[40]');
+      galleryPopup.classList.remove('z-[60]');
       galleryPopup.classList.add('-z-1');
 
       // allow scrolling
@@ -36,7 +36,7 @@ export const handlePopupClose = () => {
     if ( e.target.classList.contains('gallery-popup') ) {
       galleryPopup.classList.remove('opacity-100');
       galleryPopup.classList.add('opacity-0');
-      galleryPopup.classList.remove('z-[40]');
+      galleryPopup.classList.remove('z-[60]');
       galleryPopup.classList.add('-z-1');
 
       // allow scrolling

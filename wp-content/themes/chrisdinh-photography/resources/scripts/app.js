@@ -3,6 +3,7 @@ import { initiateSplideSlider } from './components/splide.js';
 import handleGalleryCollectionFilterClick from './components/galleryCollections.js';
 import galleryBackToTopButton from './components/galleryBackToTopButton.js';
 import { handlePopupClose } from './util/galleryPopup.js';
+import initializeGallery from './components/gallery.js';
 
 /**
  * Application entrypoint
@@ -13,6 +14,7 @@ domReady(async () => {
   handleGalleryCollectionFilterClick();
   galleryBackToTopButton();
   handlePopupClose();
+  initializeGallery();
 });
 
 /**

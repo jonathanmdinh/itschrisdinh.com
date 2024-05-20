@@ -6,7 +6,7 @@ export const handleGalleryPopup = () => {
   if ( galleryPopup ) {
     galleryPopup.classList.add('opacity-100');
     galleryPopup.classList.remove('opacity-0');
-    galleryPopup.classList.add('z-[40]');
+    galleryPopup.classList.add('z-[60]');
     galleryPopup.classList.remove('-z-1');
 
     // Prevent scrolling

@@ -44,7 +44,7 @@ const handleGalleryCollectionFilterClick = () => {
 
             // Create our string of HTML that will be parsed and injected into the DOM after all current gallery items are removed
             data.forEach((image, index) => {
-              newImagesHtml += `<div class="gallery-item__image block overflow-hidden cursor-pointer">
+              newImagesHtml += `<div class="gallery-item__image block overflow-hidden cursor-pointer transition-all opacity-0 delay-150">
                     <img data-index="${index}" src="${image.imageUrl}" alt="${image.imageAlt}" class="relative object-cover block transition-all duration-1000 w-full h-full">
                 </div>`;
 
@@ -84,6 +84,17 @@ const handleGalleryCollectionFilterClick = () => {
             // Remove the overlay so users can see the new images
             if ( galleryItemsOverlay ) {
               galleryItemsOverlay.classList.remove('gallery-items__overlay--active');
+            }
+
+            const newGalleryItems = document.querySelectorAll('.gallery-items .gallery-item__image');
+
+            if ( newGalleryItems ) {
+              newGalleryItems.forEach(item => {
+                setTimeout(() => {
+                  item.classList.remove('opacity-0');
+                  item.classList.add('opacity-1');
+                }, 100);
+              });
             }
 
             setUpClickEvent(galleryImagesContainer.querySelectorAll('.gallery-item__image img'));

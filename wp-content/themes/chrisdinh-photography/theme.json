@@ -1174,6 +1174,11 @@
           "name": "Neue-haas-grotesk-display",
           "slug": "neueHaas",
           "fontFamily": "neue-haas-grotesk-display,Helvetica-Neue,sans-serif"
+        },
+        {
+          "name": "Adobe-handwriting-ernie",
+          "slug": "logo",
+          "fontFamily": "adobe-handwriting-ernie,Helvetica-Neue,sans-serif"
         }
       ],
       "fontSizes": [

@@ -18,14 +18,36 @@ module.exports = {
       screens: {
         sm: '320px',
         md: '768px',
-        lg: '1030px',
-        xl: '1440px'
+        lg: '1024px',
+        xl: '1440px',
+        xxl: '1720px'
+      },
+      gridTemplateColumns: {
+        'gallery': 'repeat(4, 300px)'
+      },
+      gridTemplateRows: {
+        'gallery': 'repeat(auto-fill, 300px)'
       },
       padding: {},
       blur: {
         xs: '2px'
+      },
+      zIndex: {
+        1: 1
       }
     },
+    fontFamily: {
+      handwritingErnie: ['adobe-handwriting-ernie', 'Helvetica-Neue', 'sans-serif'],
+      neueHaas: ['neue-haas-grotesk-display', 'Helvetica-Neue', 'sans-serif']
+    }
   },
   plugins: [],
+  safelist: [
+    'sm:hidden',
+    'md:hidden',
+    'lg:hidden',
+    'sm:block',
+    'md:block',
+    'lg:block',
+  ]
 };

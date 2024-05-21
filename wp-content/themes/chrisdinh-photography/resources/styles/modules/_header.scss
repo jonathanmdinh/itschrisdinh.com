@@ -3,3 +3,23 @@
     @apply fixed;
   }
 }
+
+body {
+  .header {
+   @apply min-h-[150px];
+  }
+
+  #hamburger {
+    @apply top-1/2 -translate-y-1/2 right-5;
+  }
+
+  .header__website-logo {
+    @apply left-5 top-1/2 -translate-y-1/2;
+  }
+}
+
+body.home {
+  .header {
+    @apply absolute w-full left-1/2 -translate-x-1/2 z-[50];
+   }
+}

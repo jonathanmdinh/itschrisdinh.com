@@ -24,6 +24,8 @@ class App extends Composer
     {
         return [
             'siteName' => $this->siteName(),
+            'menuItems' => $this->menuItems(),
+            'contactInformation' => $this->getContactInformation(),
         ];
     }
 
@@ -35,5 +37,31 @@ class App extends Composer
     public function siteName()
     {
         return get_bloginfo('name', 'display');
+    }
+
+    /**
+     * Fetch menu items from the 'primary_navigation' menu if it exists. If not, return an empty array.
+     *
+     * @return array
+     */
+    protected function menuItems()
+    {
+        $items = [];
+
+        if (function_exists('has_nav_menu') && function_exists('wp_get_nav_menu_items') && has_nav_menu('primary_navigation')) {
+            $menuItems = wp_get_nav_menu_items('primary_navigation');
+
+            foreach ($menuItems as $item) {
+                $item->navigation_image = get_field('navigation_image', $item);
+                $items[] = $item;
+            }
+        }
+
+        return $items;
+    }
+
+    private function getContactInformation() {
+        // Fetch the 'contact_information' group from ACF options
+        return get_field('contact_information', 'option');
     }
 }

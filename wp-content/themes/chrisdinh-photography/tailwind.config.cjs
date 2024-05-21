@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        logo: ['adobe-handwriting-ernie', 'Helvetica-Neue', 'sans-serif'],
+      },
       colors: {
         black: '#000',
         white: '#fff',

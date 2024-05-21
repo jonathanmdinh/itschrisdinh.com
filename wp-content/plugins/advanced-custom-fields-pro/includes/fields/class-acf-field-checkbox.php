@@ -37,7 +37,6 @@ if ( ! class_exists( 'acf_field_checkbox' ) ) :
 				'return_format'             => 'value',
 				'custom_choice_button_text' => __( 'Add new choice', 'acf' ),
 			);
-
 		}
 
 
@@ -101,7 +100,6 @@ if ( ! class_exists( 'acf_field_checkbox' ) ) :
 
 			// return
 			echo '<ul ' . acf_esc_attr( $ul ) . '>' . "\n" . $li . '</ul>' . "\n";
-
 		}
 
 
@@ -122,7 +120,6 @@ if ( ! class_exists( 'acf_field_checkbox' ) ) :
 
 			// walk
 			return $this->walk( $field['choices'], $field );
-
 		}
 
 		/**
@@ -186,7 +183,6 @@ if ( ! class_exists( 'acf_field_checkbox' ) ) :
 
 			// return
 			return '<li>' . acf_get_checkbox_input( $atts ) . '</li>' . "\n";
-
 		}
 
 
@@ -230,7 +226,6 @@ if ( ! class_exists( 'acf_field_checkbox' ) ) :
 
 				// append
 				$html .= '<li><input class="acf-checkbox-custom" type="checkbox" checked="checked" />' . acf_get_text_input( $text_input ) . '</li>' . "\n";
-
 			}
 
 			// append button
@@ -238,7 +233,6 @@ if ( ! class_exists( 'acf_field_checkbox' ) ) :
 
 			// return
 			return $html;
-
 		}
 
 
@@ -278,7 +272,6 @@ if ( ! class_exists( 'acf_field_checkbox' ) ) :
 
 				// optgroup
 				if ( is_array( $label ) ) {
-
 					$html .= '<ul>' . "\n";
 					$html .= $this->walk( $label, $args, $depth + 1 );
 					$html .= '</ul>';
@@ -313,17 +306,14 @@ if ( ! class_exists( 'acf_field_checkbox' ) ) :
 
 					// append
 					$html .= acf_get_checkbox_input( $atts );
-
 				}
 
 				// close
 				$html .= '</li>' . "\n";
-
 			}
 
 			// return
 			return $html;
-
 		}
 
 
@@ -380,7 +370,6 @@ if ( ! class_exists( 'acf_field_checkbox' ) ) :
 					),
 				)
 			);
-
 		}
 
 		/**
@@ -538,17 +527,14 @@ if ( ! class_exists( 'acf_field_checkbox' ) ) :
 
 					// append
 					$field['choices'][ $v ] = $v;
-
 				}
 
 				// save
 				acf_update_field( $field );
-
 			}
 
 			// return
 			return $value;
-
 		}
 
 
@@ -568,7 +554,6 @@ if ( ! class_exists( 'acf_field_checkbox' ) ) :
 		function translate_field( $field ) {
 
 			return acf_get_field_type( 'select' )->translate_field( $field );
-
 		}
 
 
@@ -610,10 +595,10 @@ if ( ! class_exists( 'acf_field_checkbox' ) ) :
 		 */
 		public function get_rest_schema( array $field ) {
 			$schema = array(
-				'type'     => array( 'string', 'array', 'null' ),
+				'type'     => array( 'integer', 'string', 'array', 'null' ),
 				'required' => isset( $field['required'] ) && $field['required'],
 				'items'    => array(
-					'type' => 'string',
+					'type' => array( 'string', 'integer' ),
 				),
 			);
 
@@ -626,27 +611,13 @@ if ( ! class_exists( 'acf_field_checkbox' ) ) :
 				return $schema;
 			}
 
-			/**
-			 * If a user has defined keys for the checkboxes,
-			 * we should use the keys for the available options to POST to,
-			 * since they are what is displayed in GET requests.
-			 */
-			$checkbox_keys = array_diff(
-				array_keys( $field['choices'] ),
-				array_values( $field['choices'] )
-			);
-
-			$schema['items']['enum'] = empty( $checkbox_keys ) ? $field['choices'] : $checkbox_keys;
+			$schema['items']['enum'] = acf_get_field_type( 'select' )->format_rest_choices( $field['choices'] );
 
 			return $schema;
 		}
-
 	}
 
 
 	// initialize
 	acf_register_field_type( 'acf_field_checkbox' );
-
 endif; // class_exists check
-
-

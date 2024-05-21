@@ -24,6 +24,9 @@ class FrontPage extends Composer {
         return get_field('homepage__slider-settings');
     }
 
+
+
+
     /**
      * Data to be passed to view before rendering.
      *
@@ -34,7 +37,7 @@ class FrontPage extends Composer {
             'siteName' => $this->siteName(),
             'test' => 'look at that',
             'slides' => $this->getHomepageSliderData(),
-            'sliderSettings' => $this->getHomepageSliderSettings()
+            'sliderSettings' => $this->getHomepageSliderSettings(),
         ];
     }
 

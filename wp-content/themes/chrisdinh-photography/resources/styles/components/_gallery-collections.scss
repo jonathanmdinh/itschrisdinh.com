@@ -1,0 +1,25 @@
+.gallery-collections__collection {
+  &--active {
+    @apply border-b border-b-grey;
+  }
+
+  &:not(:last-of-type) {
+    @apply mr-3;
+  }
+
+  &:not(.gallery-collections__collection--active) {
+    &:hover {
+      @apply border-b-grey;
+    }
+  }
+}
+
+.gallery-items__overlay {
+  opacity: 0;
+  z-index: -1;
+
+  &.gallery-items__overlay--active {
+    opacity: 1;
+    z-index: 2;
+  }
+}

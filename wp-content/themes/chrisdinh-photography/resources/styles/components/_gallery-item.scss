@@ -1,0 +1,21 @@
+.gallery-item__image {
+  &:hover {
+    img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.gallery-main-slide--9-16 {
+  height: 100%;
+  width: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gallery-main-slide--16-9 {
+  width: 100%;
+  height: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}

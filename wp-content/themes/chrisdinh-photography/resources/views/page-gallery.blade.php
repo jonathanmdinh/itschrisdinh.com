@@ -12,7 +12,7 @@
     </header>
 
     @unless ( empty($galleryItems) )
-        <section class="gallery-items max-w-7xl mx-auto relative grid grid-cols-2 lg:grid-cols-4 grid-rows-gallery gap-4 px-5 pb-20">
+        <section class="gallery-items max-w-7xl mx-auto relative grid grid-cols-2 lg:grid-cols-4 auto-rows-[150px] md:auto-rows-[250px] lg:auto-rows-[300px] gap-4 px-5 pb-20">
             <div class="gallery-items__overlay absolute h-full w-full bg-black transition-all duration-700"></div>
             @foreach ($galleryItems as $index => $item)
                 <div class="gallery-item__image block overflow-hidden cursor-pointer transition-all duration-500 opacity-0 delay-150">

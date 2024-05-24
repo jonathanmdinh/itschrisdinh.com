@@ -14,7 +14,24 @@ class PageGallery extends Composer {
     ];
 
     private function getGalleryItems() {
-        return get_field('gallery__gallery-images');
+        $allItems = get_field('gallery__gallery-images');
+
+        $items = [];
+
+        foreach ($allItems as $item) {
+            $terms = get_the_terms($item['ID'], 'collection');
+
+            // If we have any collections set, add them to our new items array
+            if ( is_array($terms) && !empty($terms) ) {
+                $allTerms = array_column($terms, 'slug');
+
+                $item['taxonomy_terms'] = implode(',', $allTerms);
+            }
+
+            array_push($items, $item);
+        }
+
+        return $items;
     }
 
     private function getThumbnailSliderSettings() {

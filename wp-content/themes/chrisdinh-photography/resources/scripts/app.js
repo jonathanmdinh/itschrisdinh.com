@@ -5,6 +5,7 @@ import handleGalleryCollectionFilterClick from './components/galleryCollections.
 import galleryBackToTopButton from './components/galleryBackToTopButton.js';
 import { handlePopupClose } from './util/galleryPopup.js';
 import initializeGallery from './components/gallery.js';
+import filterGallery from './util/filterGallery.js';
 
 /**
  * Application entrypoint
@@ -17,6 +18,7 @@ domReady(async () => {
   handlePopupClose();
   initializeGallery();
   initiateNavigation();
+  filterGallery();
 });
 
 /**

@@ -12,10 +12,10 @@
     </header>
 
     @unless ( empty($galleryItems) )
-        <section class="gallery-items max-w-7xl mx-auto relative grid grid-cols-2 lg:grid-cols-4 auto-rows-[150px] md:auto-rows-[250px] lg:auto-rows-[300px] gap-4 px-5 pb-20">
+        <section class="gallery-items max-w-[1380px] mx-auto relative flex flex-row flex-wrap justify-center items-center gap-4 px-5 pb-20">
             <div class="gallery-items__overlay absolute h-full w-full bg-black transition-all duration-700"></div>
             @foreach ($galleryItems as $index => $item)
-                <div class="gallery-item__image block overflow-hidden cursor-pointer transition-all duration-500 opacity-0 delay-150">
+                <div data-terms="{{ $item['taxonomy_terms'] }}" class="gallery-item__image inline-flex w-[150px] h-[150px] md:w-[250px] md:h-[250px] lg:w-[300px] lg:h-[300px] overflow-hidden cursor-pointer">
                     <img data-index="{{ $index }}" src="{{ $item['url'] }}" alt="{{ !empty($item['alt']) ? $item['alt'] : '' }}" class="relative object-cover block transition-all duration-1000 w-full h-full">
                 </div>
             @endforeach

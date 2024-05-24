@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@roots/bud-postcss": "6.6.9",
-    "@splidejs/splide": "^4.1.4"
+    "@splidejs/splide": "^4.1.4",
+    "gsap": "^3.12.5"
   }
 }

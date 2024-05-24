@@ -14,13 +14,7 @@ class PageGallery extends Composer {
     ];
 
     private function getGalleryItems() {
-        $posts = get_posts([
-            'post_type' => 'gallery_items',
-            'post_status' => 'publish',
-            'posts_per_page' => -1
-        ]);
-
-        return $posts;
+        return get_field('gallery__gallery-images');
     }
 
     private function getThumbnailSliderSettings() {

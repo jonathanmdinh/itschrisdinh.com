@@ -55,11 +55,11 @@ export const setUpClickEvent = (galleryImages) => {
  */
 export const getMainAndThumbnailSlidersAndSettings = () => {
   const mainSlider = document.querySelector('#main-slider');
-  let mainSliderSettings = mainSlider.dataset.splide ? JSON.parse(mainSlider.dataset.splide) : {};
+  let mainSliderSettings = mainSlider && mainSlider.getAttribute('data-splide') ? JSON.parse(mainSlider.dataset.splide) : {};
   mainSliderSettings = handleMergingCustomSettings(mainSlider, mainSliderSettings);
 
   const thumbnailSlider = document.querySelector('#thumbnail-slider');
-  let thumbnailSliderSettings = thumbnailSlider.dataset.splide ? JSON.parse(thumbnailSlider.dataset.splide) : {};
+  let thumbnailSliderSettings = thumbnailSlider && thumbnailSlider.getAttribute('data-splide') ? JSON.parse(thumbnailSlider.dataset.splide) : {};
   thumbnailSliderSettings = handleMergingCustomSettings(thumbnailSlider, thumbnailSliderSettings);
 
   return {
@@ -82,6 +82,15 @@ export const getMainAndThumbnailSlidersAndSettings = () => {
 export const initializeMainAndThumbnailSliders = () => {
   // Get out main and thumbnail sliders and settings
   const { main, thumbnail } = getMainAndThumbnailSlidersAndSettings();
+
+  // Guard conditionals
+  if ( !main || !thumbnail ) {
+    return;
+  }
+
+  if ( ! main.mainSlider || !thumbnail.thumbnailSlider ) {
+    return;
+  }
 
   // Initialize Splide for each
   const mainSlider = new Splide(`#${main.mainSlider.id}`, main.mainSliderSettings);
@@ -158,9 +167,9 @@ export const reinitializeSplideAfterFiltering = (mainFilteredSlides, thumbnailFi
  * @returns {Object} The combined default settings + any custom settings
  */
 const handleMergingCustomSettings = (slider, sliderSettingsJSON) => {
-  const mobileCustomSettings = slider.dataset.mobileCustomSettings ? JSON.parse(slider.dataset.mobileCustomSettings) : {};
-  const tabletCustomSettings = slider.dataset.tabletCustomSettings ? JSON.parse(slider.dataset.tabletCustomSettings) : {};
-  const desktopCustomSettings = slider.dataset.desktopCustomSettings ? JSON.parse(slider.dataset.desktopCustomSettings) : {};
+  const mobileCustomSettings = slider && slider.dataset.mobileCustomSettings ? JSON.parse(slider.dataset.mobileCustomSettings) : {};
+  const tabletCustomSettings = slider && slider.dataset.tabletCustomSettings ? JSON.parse(slider.dataset.tabletCustomSettings) : {};
+  const desktopCustomSettings = slider &&  slider.dataset.desktopCustomSettings ? JSON.parse(slider.dataset.desktopCustomSettings) : {};
 
   if ( Object.keys(mobileCustomSettings).length > 0 ) {
     sliderSettingsJSON.breakpoints['768'] = {...sliderSettingsJSON.breakpoints['768'], ...mobileCustomSettings};

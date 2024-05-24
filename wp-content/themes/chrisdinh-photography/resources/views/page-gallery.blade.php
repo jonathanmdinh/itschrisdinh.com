@@ -16,7 +16,7 @@
             <div class="gallery-items__overlay absolute h-full w-full bg-black transition-all duration-700"></div>
             @foreach ($galleryItems as $index => $item)
                 <div class="gallery-item__image block overflow-hidden cursor-pointer transition-all duration-500 opacity-0 delay-150">
-                    <img data-index="{{ $index }}" src="{{ get_the_post_thumbnail_url($item->ID, 'full') }}" alt="{{ get_post_meta($item->ID, '_wp_attachment_image_alt', TRUE) }}" class="relative object-cover block transition-all duration-1000 w-full h-full">
+                    <img data-index="{{ $index }}" src="{{ $item['url'] }}" alt="{{ !empty($item['alt']) ? $item['alt'] : '' }}" class="relative object-cover block transition-all duration-1000 w-full h-full">
                 </div>
             @endforeach
         </section>

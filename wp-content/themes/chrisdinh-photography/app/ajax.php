@@ -20,7 +20,7 @@ class Ajax {
             if ( !empty($fetchData['termSlug']) ) {
                 // Build our query so we can get all gallery items that match a specific filter (taxonomy)
                 $wpQueryArgs = [
-                    'post_type' => 'gallery_items',
+                    'post_type' => 'attachment',
                     'post_status' => 'publish',
                     'order' => 'ASC',
                     'orderby' => 'menu_order',
@@ -48,10 +48,10 @@ class Ajax {
                 // Create our return data so the front end can show the filtered posts
                 if ( !empty($posts) ) {
                     foreach ( $posts as $post ) {
+                        error_log( print_r($post, true));
                         array_push($returnData, [
-                            'imageUrl' => get_the_post_thumbnail_url($post->ID, 'full'),
+                            'imageUrl' => wp_get_attachment_url($post->ID, 'full'),
                             'imageAlt' => get_post_meta($post->ID, '_wp_attachment_image_alt', TRUE),
-                            'excerpt' => get_the_excerpt($post->ID)
                         ]);
                     }
                 }

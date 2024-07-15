@@ -7,17 +7,21 @@ import { Flip } from "gsap/dist/Flip.js";
 gsap.registerPlugin(Flip);
 
 const filterGallery = () => {
-  const allCheckbox = document.querySelector('button.gallery-collections__collection--all');
+  const allFilter = document.querySelector('button.gallery-collections__collection--all');
   const filters = gsap.utils.toArray('.gallery-collections__collection:not(.gallery-collections__collection--all)');
   const items = gsap.utils.toArray('.gallery-item__image');
 
-  filters.forEach(btn => btn.addEventListener('click', () => {
-    updateFilters(filters, items, false);
-  }));
+  if ( filters.length ) {
+    filters.forEach(btn => btn.addEventListener('click', () => {
+      updateFilters(filters, items, false);
+    }));
+  }
 
-  allCheckbox.addEventListener('click', () => {
-    updateFilters(filters, items, true);
-  });
+  if ( allFilter ) {
+    allFilter.addEventListener('click', () => {
+      updateFilters(filters, items, true);
+    });
+  }
 }
 
 const updateFilters = (filters, items, showAll = false) => {

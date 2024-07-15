@@ -16,7 +16,14 @@
             <div class="gallery-items__overlay absolute h-full w-full bg-black transition-all duration-700"></div>
             @foreach ($galleryItems as $index => $item)
                 <div data-terms="{{ $item['taxonomy_terms'] }}" class="gallery-item__image inline-flex w-[150px] h-[150px] md:w-[250px] md:h-[250px] lg:w-[300px] lg:h-[300px] overflow-hidden cursor-pointer">
-                    <img data-index="{{ $index }}" src="{{ $item['url'] }}" alt="{{ !empty($item['alt']) ? $item['alt'] : '' }}" class="relative object-cover block transition-all duration-1000 w-full h-full">
+                    <img
+                        data-index="{{ $index }}"
+                        src="{{ $item['url'] }}"
+                        alt="{{ !empty($item['alt']) ? $item['alt'] : '' }}"
+                        class="relative object-cover block transition-all duration-1000 w-full h-full"
+                        data-height={{ $item['height'] }}
+                        data-width={{ $item['width'] }}
+                    >
                 </div>
             @endforeach
         </section>
@@ -30,7 +37,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
             </svg>
         </button>
-        <div class="max-w-[90%] mx-auto flex flex-col md:flex-row flex-wrap justify-between items-center gap-y-5 md:gap-y-0">
+        {{-- <div class="max-w-[90%] mx-auto flex flex-col md:flex-row flex-wrap justify-between items-center gap-y-5 md:gap-y-0">
             <div class="order-2 w-full md:w-[100px] md:order-1">
                 <x-slider
                     slider-settings-acf-name="gallery__thumbnail-slider-settings"
@@ -47,6 +54,11 @@
                     >
                 </x-slider>
             </div>
+        </div> --}}
+    </div>
+    <div class="gallery-popup__content">
+        <div class="gallery-popup__image-container relative flex justify-center items-center transition-all duration-300">
+            <img class="gallery-popup__image relative" />
         </div>
     </div>
 @endsection

@@ -22,7 +22,7 @@ export const initiateSplideSlider = ( selector = '.splide' ) => {
   } else {
     const allGalleryImages = document.querySelectorAll('.gallery-item__image img');
 
-    initializeMainAndThumbnailSliders();
+    // initializeMainAndThumbnailSliders();
 
     setUpClickEvent(allGalleryImages);
   }
@@ -35,11 +35,47 @@ export const initiateSplideSlider = ( selector = '.splide' ) => {
  * @param {NodeList} galleryImages all gallery images (not in the sliders)
  */
 export const setUpClickEvent = (galleryImages) => {
+  const popupImageContainer = document.querySelector('.gallery-popup__image-container');
+  const popupImage = document.querySelector('.gallery-popup__image');
+
   if ( galleryImages.length ) {
     galleryImages.forEach(image => {
       image.addEventListener('click', (e) => {
 
-        window.sliders.thumbnail.go(parseInt(image.dataset.index));
+        // window.sliders.thumbnail.go(parseInt(image.dataset.index));
+
+        const height = image.dataset.height;
+        const width = image.dataset.width;
+        const browserWidth = window.innerWidth;
+        const browserHeight = window.innerHeight;
+        const imageUrl = image.src;
+        const imageAlt = image.alt;
+
+        popupImageContainer.style.width = `${parseInt(browserWidth) * .8}px`;
+        popupImageContainer.style.height = `${parseInt(browserHeight) * .8}px`;
+
+        if ( parseInt(width) > parseInt(height) ) {
+          console.log('width is greater than height');
+          if ( ! width > browserWidth ) {
+            popupImage.style.width = `${width}px`;
+            popupImage.style.height = 'auto';
+          } else {
+            popupImage.style.width = '100%';
+            popupImage.style.height = `auto`;
+          }
+        } else {
+          console.log('height is greater than width');
+          if ( ! height > browserHeight && ! width > browserWidth ) {
+            popupImage.style.height = `${height}px`;
+            popupImage.style.width = 'auto';
+          } else {
+            popupImage.style.width = `${browserWidth * .3}px`;
+            popupImage.style.height = 'auto';
+          }
+        }
+
+        popupImage.src = imageUrl;
+        popupImage.alt = imageAlt;
 
         handleGalleryPopup();
       });

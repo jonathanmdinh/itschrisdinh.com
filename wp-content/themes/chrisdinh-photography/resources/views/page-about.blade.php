@@ -16,15 +16,10 @@
         </div>
     </header>
 
-
-
     <div class="mx-auto max-w-7xl px-5">
         <hr class="border-t-1 border-white w-full my-24 mx-auto max-w-7xl">
         <div class = "article-content">
             {!! $postContent !!}
         </div>
     </div>
-
-
-
 @endsection

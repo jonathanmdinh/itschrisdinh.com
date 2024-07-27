@@ -25,8 +25,7 @@ class PageAbout extends Composer {
             'profilePicture' => $this->getProfilePicture(),
             'fullName' => $this->getFullName(),
             'occupation' => $this->getOccupation(),
-            'bio' => $this->getBio(),
-            'articleSections' => $this->getArticleSections(),
+            'postContent' => $this->getPostContent(),
         ];
     }
 
@@ -46,21 +45,7 @@ class PageAbout extends Composer {
         return get_field('about__biographical-information')['about__occupation'];
     }
 
-    private function getBio() {
-        return get_field('bio');
-    }
-
-    private function getArticleSections() {
-        $sections = [];
-        if (have_rows('about__article-section')) {
-            while (have_rows('about__article-section')) {
-                the_row();
-                $sections[] = [
-                    'title' => get_sub_field('about__section-title'),
-                    'text' => get_sub_field('about__section-text'),
-                ];
-            }
-        }
-        return $sections;
+    private function getPostContent() {
+        return apply_filters('the_content', get_post_field('post_content', get_the_ID()));
     }
 }

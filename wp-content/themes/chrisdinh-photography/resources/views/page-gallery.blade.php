@@ -12,10 +12,16 @@
     </header>
 
     @unless ( empty($galleryItems) )
-        <section class="max-w-6xl mx-auto px-5 pb-20">
-            <div id="gallery" data-nanogallery2='{"thumbnailHeight": 300, "thumbnailWidth": "auto"}'>
+        <section class="max-w-7xl mx-auto px-5 pb-20">
+            <div id="gallery" data-nanogallery2='{"thumbnailHeight": 300, "thumbnailWidth": "auto", "galleryFilterTags": true,
+          "galleryFilterTagsMode": "multiple", "galleryDisplayTransitionDuration": 1000,
+          "thumbnailDisplayTransition": "slideRight",
+          "thumbnailDisplayTransitionDuration": 300,
+          "thumbnailDisplayInterval": 150,
+          "thumbnailDisplayOrder": "colFromRight"}'>
                 @foreach ($galleryItems as $index => $item)
                     <a
+                        data-ngtags="{{ $item['taxonomy_terms'] }}"
                         data-index="{{ $index }}"
                         href="{{ $item['url'] }}"
                         data-ngthumb="{{ $item['url'] }}">

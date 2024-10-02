@@ -1,0 +1,23 @@
+.nanogallery_gallerytheme_dark_gallery {
+  .nGY2Navigationbar {
+    .nGY2NavigationbarItem {
+      @apply capitalize transition-all duration-300 border-b border-white border-solid !bg-transparent !rounded-none;
+      background-color: transparent !important;
+      border-radius: 0 !important;
+
+      &.nGY2NavFilterSelected {
+        @apply border-white;
+      }
+
+      &.nGY2NavFilterUnselected {
+        @apply border-transparent;
+      }
+
+      &:not(.nGY2NavFilterSelectAll) {
+        i {
+          @apply hidden;
+        }
+      }
+    }
+  }
+}

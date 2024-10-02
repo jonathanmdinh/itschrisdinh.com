@@ -1,6 +1,8 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+// @import '~photoswipe/dist/photoswipe.css';
+// @import '../../node_modules/photoswipe/dist/photoswipe.css';
 
 /* Library imports */
 @import '@splidejs/splide/css';
@@ -12,6 +14,7 @@
 @import 'components/gallery-collections';
 @import 'components/slider';
 @import 'components/gallery-popup';
+@import 'components/nanogallery';
 
 @import 'modules/_global.scss';
 @import 'modules/_header.scss';

@@ -48,6 +48,11 @@ class Slider extends Component {
 
         $this->sliderSettings = get_field( $sliderSettingsAcfName, $acfPostId );
 
+        // Generate a unique ID for the slider if it doesn't have one as its required to initiate the splideJS instance
+        if ( empty($this->sliderSettings['slider__id']) ) {
+            $this->sliderSettings['slider__id'] = 'slider-' . wp_generate_uuid4();
+        }
+
         $this->sliderAcfJSONData = $this->setUpSliderJSONSettings();
         $this->sliderCustomSettings = $this->formatCustomSliderSettings();
         $this->setCustomPaginationViewSettings( $this->sliderSettings['slider__custom-pagination'] );

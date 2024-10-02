@@ -12,7 +12,7 @@
     </header>
 
     @unless ( empty($galleryItems) )
-        <section class="max-w-7xl mx-auto px-5 pb-20">
+        <section class="max-w-7xl mx-auto px-5 pb-[100px]">
             <div id="gallery" data-nanogallery2='{"thumbnailHeight": 300, "thumbnailWidth": "auto", "galleryFilterTags": true,
           "galleryFilterTagsMode": "multiple", "galleryDisplayTransitionDuration": 1000,
           "thumbnailDisplayTransition": "slideRight",

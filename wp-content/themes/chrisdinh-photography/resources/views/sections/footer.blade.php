@@ -8,16 +8,23 @@
   <div class="mx-auto my-8 w-3/4 border-t border-white"></div>
 
   <!-- Footer content constrained within the same width as the line -->
-  <div class="relative mx-auto w-3/4 flex flex-col sm:flex-row justify-between items-center text-white space-y-4 sm:space-y-0">
+  <div class="relative mx-auto w-3/4 flex flex-row justify-between items-center text-white space-y-4 md:space-y-0">
     <!-- Phone Number (Left) -->
-    <div class="w-full sm:w-auto text-center sm:text-left">
+    <div class="w-full md:w-auto text-center md:text-left">
       @if(is_string($contactInformation['contact__phone-number']))
-        <span>{{ $contactInformation['contact__phone-number'] }}</span>
+        <!-- Show icon on mobile, phone number on desktop -->
+        <a href="tel:{{ $contactInformation['contact__phone-number'] }}">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-phone md:hidden" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" />
+          </svg>
+          <span class="hidden md:block">{{ $contactInformation['contact__phone-number'] }}</span>
+        </a>
       @endif
     </div>
 
     <!-- Instagram Logo (Center) -->
-    <div class="absolute left-1/2 transform -translate-x-1/2 text-center">
+    <div class="relative md:absolute md:left-1/2 md:transform md:-translate-x-1/2 text-center">
       @if(isset($contactInformation['contact__instagram-link']['url']))
         <a href="{{ $contactInformation['contact__instagram-link']['url'] }}" target="_blank" aria-label="Instagram">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -31,9 +38,17 @@
     </div>
 
     <!-- Email Address (Right) -->
-    <div class="w-full sm:w-auto text-center sm:text-right">
+    <div class="w-full md:w-auto text-center md:text-right">
       @if(is_string($contactInformation['contact__email-address']))
-        <a href="mailto:{{ $contactInformation['contact__email-address'] }}">{{ $contactInformation['contact__email-address'] }}</a>
+        <!-- Show icon on mobile, email address on desktop -->
+        <a href="mailto:{{ $contactInformation['contact__email-address'] }}">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail md:hidden" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
+            <path d="M3 7l9 6l9 -6" />
+          </svg>
+          <span class="hidden md:block">{{ $contactInformation['contact__email-address'] }}</span>
+        </a>
       @endif
     </div>
   </div>

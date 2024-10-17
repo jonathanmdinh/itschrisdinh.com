@@ -1,5 +1,5 @@
 <li class="splide__slide">
-    <a href="{{ get_the_permalink($item->ID) }}">
+    <a href="{{ get_the_permalink($item->ID) }}" class="max-w-[800px] mx-auto block">
         <div class="w-full h-auto flex flex-col justify-center items-center mx-auto">
             <picture class="w-full h-full">
                 @php

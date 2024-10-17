@@ -34,7 +34,8 @@ module.exports = {
       },
       zIndex: {
         1: 1
-      }
+      },
+      opacity: ['group-hover', 'hover']
     },
     fontFamily: {
       handwritingErnie: ['adobe-handwriting-ernie', 'Helvetica-Neue', 'sans-serif'],

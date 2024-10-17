@@ -18,17 +18,19 @@ class PageGallery extends Composer {
 
         $items = [];
 
-        foreach ($allItems as $item) {
-            $terms = get_the_terms($item['ID'], 'collection');
+        if ( is_array($allItems) && !empty($allItems) ) {
+            foreach ($allItems as $item) {
+                $terms = get_the_terms($item['ID'], 'collection');
 
-            // If we have any collections set, add them to our new items array
-            if ( is_array($terms) && !empty($terms) && !is_wp_error($terms) ) {
-                $allTerms = array_column($terms, 'slug');
+                // If we have any collections set, add them to our new items array
+                if ( is_array($terms) && !empty($terms) && !is_wp_error($terms) ) {
+                    $allTerms = array_column($terms, 'slug');
 
-                $item['taxonomy_terms'] = implode(',', $allTerms);
+                    $item['taxonomy_terms'] = implode(',', $allTerms);
+                }
+
+                array_push($items, $item);
             }
-
-            array_push($items, $item);
         }
 
         return $items;

@@ -22,7 +22,7 @@ class PageGallery extends Composer {
             $terms = get_the_terms($item['ID'], 'collection');
 
             // If we have any collections set, add them to our new items array
-            if ( is_array($terms) && !empty($terms) ) {
+            if ( is_array($terms) && !empty($terms) && !is_wp_error($terms) ) {
                 $allTerms = array_column($terms, 'slug');
 
                 $item['taxonomy_terms'] = implode(',', $allTerms);

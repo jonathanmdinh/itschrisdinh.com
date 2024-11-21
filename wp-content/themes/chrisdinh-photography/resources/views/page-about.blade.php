@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="flex items-center justify-center px-4 bg-black" style="height: calc(100vh - 150px);">
+    <div class="flex items-center justify-center px-4" style="height: calc(100vh - 150px);">
         <div class="max-w-[75%] w-full p-16 flex gap-24">
             <!-- Profile Picture -->
             <div class="flex-shrink-0 self-center"> <!-- Center the image -->
@@ -26,6 +26,7 @@
                     <div
                         class="overflow-y-auto max-h-[500px] pr-4"
                         style="scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none;"
+                        id="bio-container"
                     >
                         <p class="text-2xl leading-relaxed">{!! $topBio !!}</p>
                     </div>
@@ -38,9 +39,34 @@
                     </style>
 
                     <!-- Fade effect at the bottom -->
-                    <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
+                    <div
+                        id="fade-effect"
+                        class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black to-transparent pointer-events-none hidden"
+                    ></div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const bioContainer = document.getElementById('bio-container');
+            const fadeEffect = document.getElementById('fade-effect');
+
+            const toggleFadeEffect = () => {
+                // Check if the container height is greater than 500px
+                if (bioContainer.offsetHeight >= 500) {
+                    fadeEffect.classList.remove('hidden');
+                } else {
+                    fadeEffect.classList.add('hidden');
+                }
+            };
+
+            // Initial check
+            toggleFadeEffect();
+
+            // Re-check on window resize
+            window.addEventListener('resize', toggleFadeEffect);
+        });
+    </script>
 @endsection

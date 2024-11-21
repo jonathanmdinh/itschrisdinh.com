@@ -13,9 +13,9 @@
             </div>
 
             <!-- Content -->
-            <div class="flex-grow text-white xl:text-left">
+            <div class="flex-grow text-white">
                 <!-- Name and Occupation -->
-                <div>
+                <div class="text-center xl:text-left">
                     <h1 class="text-4xl xl:text-6xl font-bold">{{ $biographicalInformation['about__full-name'] }}</h1>
                     <p class="text-lg xl:text-2xl mt-2 xl:mt-4">{{ $biographicalInformation['about__occupation'] }}</p>
                 </div>

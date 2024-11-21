@@ -16,9 +16,16 @@ export function initializeFadeEffect(bioContainerId, fadeEffectId) {
   }
 
   const updateFadeEffect = () => {
-      if (bioContainer.scrollHeight > bioContainer.clientHeight) {
-          fadeEffect.classList.remove('hidden');
+      // Check if the screen width is larger than 1024px (lg breakpoint)
+      if (window.innerWidth >= 1024) {
+          // Apply fade effect logic for larger screens
+          if (bioContainer.scrollHeight > bioContainer.clientHeight) {
+              fadeEffect.classList.remove('hidden');
+          } else {
+              fadeEffect.classList.add('hidden');
+          }
       } else {
+          // Ensure fade effect is hidden on smaller screens
           fadeEffect.classList.add('hidden');
       }
   };

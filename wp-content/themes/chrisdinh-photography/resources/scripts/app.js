@@ -5,18 +5,24 @@ import handleGalleryCollectionFilterClick from './components/galleryCollections.
 import galleryBackToTopButton from './components/galleryBackToTopButton.js';
 import { handlePopupClose } from './util/galleryPopup.js';
 import initializeGallery from './components/gallery.js';
+import { initializeFadeEffect } from './components/textFadeEffect.js';
+
 
 /**
  * Application entrypoint
  */
 domReady(async () => {
   // ...
+  if (document.body.classList.contains('about')) {
+    initializeFadeEffect('bioContainer', 'fadeEffect');
+  }
   initiateSplideSlider();
   handleGalleryCollectionFilterClick();
   galleryBackToTopButton();
   handlePopupClose();
   initializeGallery();
   initiateNavigation();
+
 });
 
 /**

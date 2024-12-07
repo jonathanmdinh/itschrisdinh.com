@@ -1,5 +1,4 @@
 import { Splide, SplidePagination } from "@splidejs/splide";
-import { handleGalleryPopup } from "@scripts/util/galleryPopup";
 
 export const initiateSplideSlider = ( selector = '.splide' ) => {
   const sliders = document.querySelectorAll(`${selector}`);
@@ -76,8 +75,6 @@ export const setUpClickEvent = (galleryImages) => {
 
         popupImage.src = imageUrl;
         popupImage.alt = imageAlt;
-
-        handleGalleryPopup();
       });
     })
   }

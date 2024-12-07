@@ -25,8 +25,19 @@ class PageGallery extends Composer {
                 // If we have any collections set, add them to our new items array
                 if ( is_array($terms) && !empty($terms) && !is_wp_error($terms) ) {
                     $allTerms = array_column($terms, 'slug');
+                    $allTermsTitle = array_column($terms, 'name');
 
-                    $item['taxonomy_terms'] = implode(',', $allTerms);
+                    if ( !empty($allTerms) ) {
+                        $item['taxonomy_terms'] = implode(',', $allTerms);
+                    } else {
+                        $item['taxonomy_terms'] = '';
+                    }
+
+                    if ( !empty($allTermsTitle) ) {
+                        $item['taxonomy_terms_name'] = implode(',', $allTermsTitle);
+                    } else {
+                        $item['taxonomy_terms_name'] = '';
+                    }
                 }
 
                 array_push($items, $item);
@@ -34,6 +45,22 @@ class PageGallery extends Composer {
         }
 
         return $items;
+    }
+
+    private function nanoGallerySettings() {
+        $settings = [
+            'thumbnailHeight' => 300,
+            'thumbnailWidth' => 'auto',
+            'galleryFilterTags' => true,
+            'galleryFilterTagsMode' => 'multiple',
+            'galleryDisplayTransitionDuration' => 1000,
+            'thumbnailDisplayTransition' => 'slideRight',
+            'thumbnailDisplayTransitionDuration' => 300,
+            'thumbnailDisplayInterval' => 150,
+            'thumbnailDisplayOrder' => 'colFromRight'
+        ];
+
+        return json_encode($settings);
     }
 
     private function getThumbnailSliderSettings() {
@@ -58,7 +85,8 @@ class PageGallery extends Composer {
             'siteName' => $this->siteName(),
             'galleryItems' => $this->getGalleryItems(),
             'thumbnailSliderSettings' => $this->getThumbnailSliderSettings(),
-            'mainSliderSettings' => $this->getMainSliderSettings()
+            'mainSliderSettings' => $this->getMainSliderSettings(),
+            'nanoGallerySettings' => $this->nanoGallerySettings()
         ];
     }
 

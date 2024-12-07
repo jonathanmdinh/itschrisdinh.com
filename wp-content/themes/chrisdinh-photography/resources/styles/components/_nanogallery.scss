@@ -1,7 +1,9 @@
 .nanogallery_gallerytheme_dark_gallery {
   .nGY2Navigationbar {
     .nGY2NavigationbarItem {
-      @apply capitalize transition-all duration-300 border-b border-white border-solid !bg-transparent !rounded-none;
+      @apply capitalize transition-all duration-300 border-b border-white border-solid;
+      font-family: "neue-haas-grotesk-display", "Helvetica-Neue", sans-serif;
+      letter-spacing: 2px;
       background-color: transparent !important;
       border-radius: 0 !important;
 
@@ -16,6 +18,17 @@
       &:not(.nGY2NavFilterSelectAll) {
         i {
           @apply hidden;
+        }
+      }
+
+      &.nGY2NavFilterSelectAll {
+        .nGY2Icon-toggle-on {
+          font-family: "neue-haas-grotesk-display", "Helvetica-Neue", sans-serif;
+          letter-spacing: 2px;
+
+          &::before {
+            content: 'All';
+          }
         }
       }
     }

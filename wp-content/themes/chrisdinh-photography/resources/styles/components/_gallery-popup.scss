@@ -1,7 +1,7 @@
-.gallery-popup__content {
-  @apply -z-1 hidden;
+.overlay {
+  background-color: rgba(0, 0, 0, 0.9);
 
   &--active {
-    @apply fixed z-[70] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 block;
+    @apply opacity-100 z-[50] transition-all duration-300;
   }
 }

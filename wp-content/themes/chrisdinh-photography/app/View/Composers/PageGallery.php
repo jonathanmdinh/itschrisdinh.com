@@ -52,7 +52,7 @@ class PageGallery extends Composer {
             'thumbnailHeight' => 300,
             'thumbnailWidth' => 'auto',
             'galleryFilterTags' => true,
-            'galleryFilterTagsMode' => 'multiple',
+            'galleryFilterTagsMode' => 'single',
             'galleryDisplayTransitionDuration' => 1000,
             'thumbnailDisplayTransition' => 'slideRight',
             'thumbnailDisplayTransitionDuration' => 300,

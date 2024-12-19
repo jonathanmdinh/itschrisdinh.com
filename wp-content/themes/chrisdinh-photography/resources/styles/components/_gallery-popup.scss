@@ -1,7 +1,55 @@
-.gallery-popup__content {
-  @apply -z-1 hidden;
+.overlay {
+  background-color: rgba(0, 0, 0, 0.9);
 
   &--active {
-    @apply fixed z-[70] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 block;
+    @apply opacity-100 z-[50] transition-all duration-300;
+  }
+
+  .image-container {
+    &.overlay__image-load {
+      background: linear-gradient(-45deg, #000, #fff);
+      background-size: 400% 400%;
+      animation: gradient 3s ease infinite;
+    }
+  }
+}
+
+.fade-in {
+  animation: fade-in 0.5s ease-in-out forwards;
+}
+
+.fade-out {
+  animation: fade-out 0.5s ease-in-out forwards;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes fade-in {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }

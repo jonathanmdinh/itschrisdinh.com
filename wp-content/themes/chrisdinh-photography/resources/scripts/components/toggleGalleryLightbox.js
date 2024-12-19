@@ -26,6 +26,12 @@ const toggleGalleryLightbox = () => {
     });
   }
 
+  overlay.addEventListener('click', (e) => {
+    if (e.target.classList.contains('overlay')) {
+      overlay.classList.remove('overlay--active');
+    }
+  });
+
   // Handle closing the overlay
   if (overlayClose) {
     overlayClose.addEventListener('click', () => {

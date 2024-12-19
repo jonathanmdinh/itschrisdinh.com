@@ -48,7 +48,7 @@
         </section>
     @endunless
 
-    <div class="overlay fixed w-full h-full top-0 left-0 opacity-0 -z-1 transition-all duration-300 ease">
+    <div class="overlay fixed w-full h-full top-0 left-0 -z-1 transition-all duration-300 ease">
         <div class="overlay__navigate overlay__prev absolute top-1/2 cursor-pointer h-3/4 w-[100px] flex justify-center items-center left-0 -translate-y-1/2 z-[51] hover:opacity-50 transition-all duration-300 ease">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline-block w-[30px] h-[30px] stroke-white">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />

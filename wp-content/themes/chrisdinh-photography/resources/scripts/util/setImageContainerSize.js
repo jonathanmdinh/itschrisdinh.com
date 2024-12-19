@@ -17,7 +17,7 @@ const setImageContainerSize = (imageIndex) => {
   // If the image has a src, we need to fade out the image description and remove the image
   if (imageHasSrc) {
     imageDescription.classList.remove('fade-in');
-    imageDescription.classList.add('fade-out');
+    imageDescription.classList.add('opacity-0');
     image.src = '';
   }
 

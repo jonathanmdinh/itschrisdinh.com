@@ -63,7 +63,7 @@
 
         <div class="image-container bg-black transition-all duration-1000 ease relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style="width:1000px;height:700px;">
             <img class="overlay__image">
-            <p class="overlay__image-description text-white pt-2.5 text-[12px] leading-[12px] tracking-[2px] opacity-0">
+            <p class="overlay__image-description text-white pt-2.5 text-[12px] leading-[12px] tracking-[2px] transition-all duration-300 ease opacity-0">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
             </p>
         </div>

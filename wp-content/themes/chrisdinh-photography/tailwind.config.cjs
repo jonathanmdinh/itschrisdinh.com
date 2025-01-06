@@ -11,6 +11,7 @@ module.exports = {
         logo: ['adobe-handwriting-ernie', 'Helvetica-Neue', 'sans-serif'],
       },
       colors: {
+        background: '#0D0D0D',
         black: '#000',
         white: '#fff',
         grey: '#999999',

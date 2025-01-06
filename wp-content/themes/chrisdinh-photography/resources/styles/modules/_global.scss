@@ -1,7 +1,7 @@
 $main-breakpoint: '1120px';
 
 body {
-  background-color: #000;
+  background-color: #0D0D0D;
 
   &.popup-active {
     overflow-y: hidden;
@@ -17,6 +17,10 @@ h1 {
   @include min-width($main-breakpoint) {
     font-size: 38px;
   }
+}
+
+p {
+  letter-spacing: 0.09em;
 }
 
 h2,

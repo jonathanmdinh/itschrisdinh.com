@@ -28,7 +28,7 @@
                         style="scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none;"
                         id="bioContainer"
                     >
-                        <p class="text-lg xl:text-2xl leading-relaxed">{!! $topBio !!}</p>
+                        <p class="text-md xl:text-2xl leading-relaxed">{!! $topBio !!}</p>
                     </div>
 
                     <!-- Hide the scrollbar -->

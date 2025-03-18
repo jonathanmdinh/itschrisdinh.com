@@ -1,7 +1,7 @@
 const resizeOverlayContainer = (imageIndex) => {
     const nextOrPrevButton = document.querySelectorAll('.overlay__navigate');
     const imageContainer = document.querySelector('.image-container');
-    const galleryItems = document.querySelectorAll('.gallery-test__item img');
+    const galleryItems = document.querySelectorAll('.gallery__item img');
     // console.log(galleryItems);
     const sizes = [];
 

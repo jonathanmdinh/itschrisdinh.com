@@ -9,7 +9,7 @@ const setImageContainerSize = (imageIndex) => {
   const imageContainer = document.querySelector('.image-container');
   const image = document.querySelector('.overlay__image');
   const imageDescription = document.querySelector('.overlay__image-description');
-  const galleryItems = document.querySelectorAll('.gallery-test__item img');
+  const galleryItems = document.querySelectorAll('.gallery__item img');
   const sizes = [];
 
   const imageHasSrc = image.src !== '';
@@ -23,10 +23,13 @@ const setImageContainerSize = (imageIndex) => {
 
   // Generate an array of image sizes and srcs based on the gallery items at the time this is called. Allows us to set the correct image size after filtering
   Array.from(galleryItems).map((item) => {
+    const container = item.closest('.gallery__item');
+
     sizes.push({
       width: parseInt(item.dataset.width),
       height: parseInt(item.dataset.height),
       src: item.src,
+      hidden: container.style.display === 'none', // When filtering, the gallery item container will be hidden. We will use this to check which image should appear next
     });
   });
 

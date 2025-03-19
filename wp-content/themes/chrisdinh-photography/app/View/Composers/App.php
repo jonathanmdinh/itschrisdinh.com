@@ -25,7 +25,10 @@ class App extends Composer
         return [
             'siteName' => $this->siteName(),
             'menuItems' => $this->menuItems(),
-            'contactInformation' => $this->getContactInformation(),
+            'phoneNumber' => $this->getPhoneNumber(),
+            'instagramLink' => $this->getInstagramLink(),
+            'emailAddress' => $this->getEmailAddress(),
+            'footerClasses' => $this->getFooterClasses(),
         ];
     }
 
@@ -60,8 +63,56 @@ class App extends Composer
         return $items;
     }
 
-    private function getContactInformation() {
-        // Fetch the 'contact_information' group from ACF options
+        /**
+     * Fetch the 'contact_information' group from ACF options.
+     *
+     * @return array|null
+     */
+    private function getContactInformation()
+    {
         return get_field('contact_information', 'option');
+    }
+
+    /**
+     * Fetch phone number from contact information.
+     *
+     * @return string|null
+     */
+    private function getPhoneNumber()
+    {
+        $contactInformation = $this->getContactInformation();
+        return $contactInformation['contact__phone-number'] ?? null;
+    }
+
+    /**
+     * Fetch Instagram link from contact information.
+     *
+     * @return string|null
+     */
+    private function getInstagramLink()
+    {
+        $contactInformation = $this->getContactInformation();
+        return $contactInformation['contact__instagram-link']['url'] ?? null;
+    }
+
+    /**
+     * Fetch email address from contact information.
+     *
+     * @return string|null
+     */
+    private function getEmailAddress()
+    {
+        $contactInformation = $this->getContactInformation();
+        return $contactInformation['contact__email-address'] ?? null;
+    }
+
+    /**
+     * Determine the footer's CSS classes.
+     *
+     * @return string
+     */
+    private function getFooterClasses()
+    {
+        return is_front_page() ? 'absolute bottom-0 w-full' : 'relative';
     }
 }

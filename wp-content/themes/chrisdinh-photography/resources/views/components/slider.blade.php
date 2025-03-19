@@ -27,7 +27,7 @@
                 </ul>
             </div>
 
-            <div class="splide__custom-pagination text-center bottom-2 left-0 px-0 py-4 absolute right-0 z-1 text-white {{ $customPaginationShowOn }}"></div>
+            <div class="splide__custom-pagination text-center bottom-24 left-0 px-0 py-4 absolute right-0 z-1 text-white {{ $customPaginationShowOn }}"></div>
             <div class="splide__pagination text-white"></div>
         </div>
         @if ($sliderSettings['slider__show-camera-effect'])

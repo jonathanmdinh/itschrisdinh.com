@@ -1,9 +1,9 @@
-<footer class="content-info mt-36 mb-8 {{ $footerClasses }}">
+<footer class="content-info mt-36 mb-8 relative max-w-7xl mx-auto px-5 {{ $footerClasses }}">
     <!-- White line centered with consistent width and padding -->
-    <div class="mx-auto my-6 md:my-8 w-3/5 border-t border-white"></div>
+    <div class="mx-auto my-6 md:my-8  border-t border-white w-full"></div>
 
     <!-- Footer content -->
-    <div class="relative mx-auto w-3/5 flex flex-row justify-between items-center text-white space-y-0">
+    <div class="relative mx-auto w-full flex flex-row justify-between items-center text-white space-y-0">
         <!-- Phone Number (Left) -->
         @if($phoneNumber)
             <div class="w-full md:w-auto flex items-center">

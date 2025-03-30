@@ -1,5 +1,4 @@
 import { Splide, SplidePagination } from "@splidejs/splide";
-import { handleGalleryPopup } from "@scripts/util/galleryPopup";
 
 export const initiateSplideSlider = ( selector = '.splide' ) => {
   const sliders = document.querySelectorAll(`${selector}`);
@@ -22,7 +21,7 @@ export const initiateSplideSlider = ( selector = '.splide' ) => {
   } else {
     const allGalleryImages = document.querySelectorAll('.gallery-item__image img');
 
-    initializeMainAndThumbnailSliders();
+    // initializeMainAndThumbnailSliders();
 
     setUpClickEvent(allGalleryImages);
   }
@@ -35,13 +34,47 @@ export const initiateSplideSlider = ( selector = '.splide' ) => {
  * @param {NodeList} galleryImages all gallery images (not in the sliders)
  */
 export const setUpClickEvent = (galleryImages) => {
+  const popupImageContainer = document.querySelector('.gallery-popup__image-container');
+  const popupImage = document.querySelector('.gallery-popup__image');
+
   if ( galleryImages.length ) {
     galleryImages.forEach(image => {
       image.addEventListener('click', (e) => {
 
-        window.sliders.thumbnail.go(parseInt(image.dataset.index));
+        // window.sliders.thumbnail.go(parseInt(image.dataset.index));
 
-        handleGalleryPopup();
+        const height = image.dataset.height;
+        const width = image.dataset.width;
+        const browserWidth = window.innerWidth;
+        const browserHeight = window.innerHeight;
+        const imageUrl = image.src;
+        const imageAlt = image.alt;
+
+        popupImageContainer.style.width = `${parseInt(browserWidth) * .8}px`;
+        popupImageContainer.style.height = `${parseInt(browserHeight) * .8}px`;
+
+        if ( parseInt(width) > parseInt(height) ) {
+          console.log('width is greater than height');
+          if ( ! width > browserWidth ) {
+            popupImage.style.width = `${width}px`;
+            popupImage.style.height = 'auto';
+          } else {
+            popupImage.style.width = '100%';
+            popupImage.style.height = `auto`;
+          }
+        } else {
+          console.log('height is greater than width');
+          if ( ! height > browserHeight && ! width > browserWidth ) {
+            popupImage.style.height = `${height}px`;
+            popupImage.style.width = 'auto';
+          } else {
+            popupImage.style.width = `${browserWidth * .3}px`;
+            popupImage.style.height = 'auto';
+          }
+        }
+
+        popupImage.src = imageUrl;
+        popupImage.alt = imageAlt;
       });
     })
   }
@@ -55,11 +88,11 @@ export const setUpClickEvent = (galleryImages) => {
  */
 export const getMainAndThumbnailSlidersAndSettings = () => {
   const mainSlider = document.querySelector('#main-slider');
-  let mainSliderSettings = mainSlider.dataset.splide ? JSON.parse(mainSlider.dataset.splide) : {};
+  let mainSliderSettings = mainSlider && mainSlider.getAttribute('data-splide') ? JSON.parse(mainSlider.dataset.splide) : {};
   mainSliderSettings = handleMergingCustomSettings(mainSlider, mainSliderSettings);
 
   const thumbnailSlider = document.querySelector('#thumbnail-slider');
-  let thumbnailSliderSettings = thumbnailSlider.dataset.splide ? JSON.parse(thumbnailSlider.dataset.splide) : {};
+  let thumbnailSliderSettings = thumbnailSlider && thumbnailSlider.getAttribute('data-splide') ? JSON.parse(thumbnailSlider.dataset.splide) : {};
   thumbnailSliderSettings = handleMergingCustomSettings(thumbnailSlider, thumbnailSliderSettings);
 
   return {
@@ -82,6 +115,15 @@ export const getMainAndThumbnailSlidersAndSettings = () => {
 export const initializeMainAndThumbnailSliders = () => {
   // Get out main and thumbnail sliders and settings
   const { main, thumbnail } = getMainAndThumbnailSlidersAndSettings();
+
+  // Guard conditionals
+  if ( !main || !thumbnail ) {
+    return;
+  }
+
+  if ( ! main.mainSlider || !thumbnail.thumbnailSlider ) {
+    return;
+  }
 
   // Initialize Splide for each
   const mainSlider = new Splide(`#${main.mainSlider.id}`, main.mainSliderSettings);
@@ -158,9 +200,9 @@ export const reinitializeSplideAfterFiltering = (mainFilteredSlides, thumbnailFi
  * @returns {Object} The combined default settings + any custom settings
  */
 const handleMergingCustomSettings = (slider, sliderSettingsJSON) => {
-  const mobileCustomSettings = slider.dataset.mobileCustomSettings ? JSON.parse(slider.dataset.mobileCustomSettings) : {};
-  const tabletCustomSettings = slider.dataset.tabletCustomSettings ? JSON.parse(slider.dataset.tabletCustomSettings) : {};
-  const desktopCustomSettings = slider.dataset.desktopCustomSettings ? JSON.parse(slider.dataset.desktopCustomSettings) : {};
+  const mobileCustomSettings = slider && slider.dataset.mobileCustomSettings ? JSON.parse(slider.dataset.mobileCustomSettings) : {};
+  const tabletCustomSettings = slider && slider.dataset.tabletCustomSettings ? JSON.parse(slider.dataset.tabletCustomSettings) : {};
+  const desktopCustomSettings = slider &&  slider.dataset.desktopCustomSettings ? JSON.parse(slider.dataset.desktopCustomSettings) : {};
 
   if ( Object.keys(mobileCustomSettings).length > 0 ) {
     sliderSettingsJSON.breakpoints['768'] = {...sliderSettingsJSON.breakpoints['768'], ...mobileCustomSettings};

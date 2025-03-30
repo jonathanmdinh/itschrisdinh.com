@@ -1,22 +1,21 @@
 import domReady from '@roots/sage/client/dom-ready';
 import initiateNavigation  from './components/navigation.js';
 import { initiateSplideSlider } from './components/splide.js';
-import handleGalleryCollectionFilterClick from './components/galleryCollections.js';
 import galleryBackToTopButton from './components/galleryBackToTopButton.js';
-import { handlePopupClose } from './util/galleryPopup.js';
-import initializeGallery from './components/gallery.js';
-
+// import toggleGalleryLightbox from './components/toggleGalleryLightbox.js';
+import galleryFilter from './components/galleryFilter.js';
+import galleryState from './modules/galleryState.js';
 /**
  * Application entrypoint
  */
 domReady(async () => {
   // ...
   initiateSplideSlider();
-  handleGalleryCollectionFilterClick();
   galleryBackToTopButton();
-  handlePopupClose();
-  initializeGallery();
   initiateNavigation();
+  // toggleGalleryLightbox();
+  galleryFilter();
+  galleryState.init();
 });
 
 /**

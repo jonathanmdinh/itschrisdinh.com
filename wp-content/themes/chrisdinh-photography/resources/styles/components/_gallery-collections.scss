@@ -1,5 +1,5 @@
 .gallery-collections__collection {
-  &--active {
+  &.mixitup-control-active {
     @apply border-b border-b-grey;
   }
 
@@ -7,7 +7,7 @@
     @apply mr-3;
   }
 
-  &:not(.gallery-collections__collection--active) {
+  &:not(.mixitup-control-active) {
     &:hover {
       @apply border-b-grey;
     }

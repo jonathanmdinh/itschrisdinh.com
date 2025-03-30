@@ -14,13 +14,53 @@ class PageGallery extends Composer {
     ];
 
     private function getGalleryItems() {
-        $posts = get_posts([
-            'post_type' => 'gallery_items',
-            'post_status' => 'publish',
-            'posts_per_page' => -1
-        ]);
+        $allItems = get_field('gallery__gallery-images');
 
-        return $posts;
+        $items = [];
+
+        if ( is_array($allItems) && !empty($allItems) ) {
+            foreach ($allItems as $item) {
+                $terms = get_the_terms($item['ID'], 'collection');
+
+                // If we have any collections set, add them to our new items array
+                if ( is_array($terms) && !empty($terms) && !is_wp_error($terms) ) {
+                    $allTerms = array_column($terms, 'slug');
+                    $allTermsTitle = array_column($terms, 'name');
+
+                    if ( !empty($allTerms) ) {
+                        $item['taxonomy_terms'] = implode(',', $allTerms);
+                    } else {
+                        $item['taxonomy_terms'] = '';
+                    }
+
+                    if ( !empty($allTermsTitle) ) {
+                        $item['taxonomy_terms_name'] = implode(',', $allTermsTitle);
+                    } else {
+                        $item['taxonomy_terms_name'] = '';
+                    }
+                }
+
+                array_push($items, $item);
+            }
+        }
+
+        return $items;
+    }
+
+    private function nanoGallerySettings() {
+        $settings = [
+            'thumbnailHeight' => 300,
+            'thumbnailWidth' => 'auto',
+            'galleryFilterTags' => true,
+            'galleryFilterTagsMode' => 'single',
+            'galleryDisplayTransitionDuration' => 1000,
+            'thumbnailDisplayTransition' => 'slideRight',
+            'thumbnailDisplayTransitionDuration' => 300,
+            'thumbnailDisplayInterval' => 150,
+            'thumbnailDisplayOrder' => 'colFromRight'
+        ];
+
+        return json_encode($settings);
     }
 
     private function getThumbnailSliderSettings() {
@@ -45,7 +85,8 @@ class PageGallery extends Composer {
             'siteName' => $this->siteName(),
             'galleryItems' => $this->getGalleryItems(),
             'thumbnailSliderSettings' => $this->getThumbnailSliderSettings(),
-            'mainSliderSettings' => $this->getMainSliderSettings()
+            'mainSliderSettings' => $this->getMainSliderSettings(),
+            'nanoGallerySettings' => $this->nanoGallerySettings()
         ];
     }
 
